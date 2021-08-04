@@ -7,6 +7,7 @@ import Footer from "./layout/Footer/Footer";
 // Importing Pages
 import Home from "./pages/Home/Home";
 import Itens from "./pages/Itens/Itens";
+import Recommendation from "./pages/Recommendation/Recommendation";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <main>
         <Home />
         <Itens />
+        <Recommendation />
       </main>
       <Footer />
     </div>
