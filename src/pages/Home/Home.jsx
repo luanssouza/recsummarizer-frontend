@@ -1,17 +1,74 @@
 import React, { Component } from 'react';
 
 // Bootstrap imports
-import { Container } from 'react-bootstrap';
+import { Button, Container, Form } from 'react-bootstrap';
 
 class Home extends Component {
     render() {
         return (
             <Container>
-                <h1 className="text-center">Welcome</h1>
+                <h1 className="text-center">TERMO DE CONSENTIMENTO LIVRE E ESCLARECIDO</h1>
                 <hr/>
                 <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                Você está sendo convidado(a) como voluntário(a) a participar da pesquisa: “Personalização de Explicações em Recomendação com Diferentes Níveis de Detalhamento Usando Revisões de Usuários”.
                 </p>
+
+                <p>
+                    A presente pesquisa visa estudar como as explicações podem contribuir para a transparência e experiência do usuário em sistemas de recomendação. A justificativa da pesquisa é a busca por explicações persuasivas e efetivas, dando ao usuário a chance de tomar melhores decisões frente a uma lista de recomendações. O objetivo deste trabalho é desenvolver um algoritmo capaz de gerar explicações personalizadas com diferentes níveis de detalhamento para recomendações. 
+                </p>
+
+                <p>
+                    Sua participação é voluntária e em qualquer fase da pesquisa você poderá interromper o experimento, recusar-se a participar ou retirar seu consentimento, sem penalização alguma.  Você será esclarecido(a) sobre a pesquisa em qualquer aspecto que desejar. Seus dados serão tratados de maneira anônima e confidêncial, deste modo, você não será identificado(a) em nenhuma publicação resultante deste estudo.
+                </p>
+
+                <p>
+                    Sua participação na pesquisa ocorrerá de maneira online nas próximas páginas, na seguinte ordem:
+                    <ul>
+                        <li>
+                            Formulário para coleta de informações demográficas (faixa-etária, gênero e nível de escolaridade);
+                        </li>
+                        <li>
+                            Modelagem do perfil do usuário (pesquisa e avaliação de itens de sua preferência);
+                        </li>
+                        <li>
+                            Apresentação da recomendação junto a uma explicação e a um questionário para avaliação;
+                        </li>
+                        <li>
+                            Apresentação da recomendação junto a duas explicações e um questionário de avaliação das explicações;
+                        </li>
+                        <li>
+                            Encerramento do experimento.
+                        </li>          
+                    </ul>
+                </p>
+
+                <p>
+                    O tempo estimado para o experimento é de aproximadamente 10 (dez) minutos. Não há benefícios diretos aos participantes. Existe um desconforto e risco mínimo na participação da coleta de dados, pois os itens e suas explicações podem gerar pensamentos e sensações negativas. Nesse sentido, é importante destacar que a qualquer momento você poderá interromper o preenchimento dos formulários.
+                </p>
+
+                <p> 
+                    Você receberá uma via do Termo de Consentimento Livre e Esclarecido assinada pelo pesquisador por meio do e-mail informado ao final deste termo.
+                </p>
+
+                <Form>
+                    <Form.Group className="mb-3" controlId="userName">
+                        <Form.Label>Nome do Participante</Form.Label>
+                        <Form.Control type="text" placeholder="Nome Completo" />
+                    </Form.Group>
+
+                    <Form.Group className="mb-3" controlId="userEmail">
+                        <Form.Label>Email para envio do TCLE assinado</Form.Label>
+                        <Form.Control type="email" placeholder="Email" />
+                    </Form.Group>
+
+                    <Form.Group className="mb-3" controlId="userAccept">
+                        <Form.Check type="checkbox" label="Declaro que li e estou ciente das informações acima e concordo em participar da pesquisa diante dos procedimentos informados." />
+                    </Form.Group>
+
+                    <Button variant="primary" type="submit">
+                        Próximo
+                    </Button>
+                </Form>
             </Container>
         );
     }
