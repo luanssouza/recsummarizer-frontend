@@ -4,6 +4,23 @@ import React, { Component } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 
 class Home extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {accept: false };
+    }
+
+    handleChangeAccept = () => {
+        this.setState({ accept: !this.state.accept });  
+    }
+
+    handleSubmit = (event) => {
+        event.preventDefault();
+
+        this.props.history.push('/itens');
+    }
+
     render() {
         return (
             <Container>
@@ -50,7 +67,7 @@ class Home extends Component {
                     Você receberá uma via do Termo de Consentimento Livre e Esclarecido assinada pelo pesquisador por meio do e-mail informado ao final deste termo.
                 </p>
 
-                <Form>
+                <Form onSubmit={this.handleSubmit}>
                     <Form.Group className="mb-3" controlId="userName">
                         <Form.Label>Nome do Participante</Form.Label>
                         <Form.Control type="text" placeholder="Nome Completo" />
@@ -62,10 +79,11 @@ class Home extends Component {
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="userAccept">
-                        <Form.Check type="checkbox" label="Declaro que li e estou ciente das informações acima e concordo em participar da pesquisa diante dos procedimentos informados." />
+                        <Form.Check type="checkbox" label="Declaro que li e estou ciente das informações acima e concordo em participar da pesquisa diante dos procedimentos informados." 
+                        value={this.state.accept} onChange={this.handleChangeAccept} />
                     </Form.Group>
 
-                    <Button variant="primary" type="submit">
+                    <Button variant="primary" type="submit" disabled={!this.state.accept}>
                         Próximo
                     </Button>
                 </Form>
