@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+
+// Bootstrap imports
 import { Button, Col, Container, Image, Row } from "react-bootstrap";
 
 class Recommendation extends Component {

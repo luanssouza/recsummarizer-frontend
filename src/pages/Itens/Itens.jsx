@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+
+// Bootstrap imports
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 
 class Itens extends Component {

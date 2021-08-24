@@ -17,7 +17,7 @@ class Home extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    this.props.history.push("/itens");
+    this.props.history.push("/demographic");
   };
 
   render() {
@@ -56,26 +56,27 @@ class Home extends Component {
         <p>
           Sua participação na pesquisa ocorrerá de maneira online nas próximas
           páginas, na seguinte ordem:
-          <ul>
-            <li>
-              Formulário para coleta de informações demográficas (faixa-etária,
-              gênero e nível de escolaridade);
-            </li>
-            <li>
-              Modelagem do perfil do usuário (pesquisa e avaliação de itens de
-              sua preferência);
-            </li>
-            <li>
-              Apresentação da recomendação junto a uma explicação e a um
-              questionário para avaliação;
-            </li>
-            <li>
-              Apresentação da recomendação junto a duas explicações e um
-              questionário de avaliação das explicações;
-            </li>
-            <li>Encerramento do experimento.</li>
-          </ul>
         </p>
+
+        <ul>
+          <li>
+            Formulário para coleta de informações demográficas (faixa-etária,
+            gênero e nível de escolaridade);
+          </li>
+          <li>
+            Modelagem do perfil do usuário (pesquisa e avaliação de itens de sua
+            preferência);
+          </li>
+          <li>
+            Apresentação da recomendação junto a uma explicação e a um
+            questionário para avaliação;
+          </li>
+          <li>
+            Apresentação da recomendação junto a duas explicações e um
+            questionário de avaliação das explicações;
+          </li>
+          <li>Encerramento do experimento.</li>
+        </ul>
 
         <p>
           O tempo estimado para o experimento é de aproximadamente 10 (dez)

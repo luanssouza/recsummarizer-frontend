@@ -6,6 +6,7 @@ import Footer from "./layout/Footer/Footer";
 
 // Importing Pages
 import Home from "./pages/Home/Home";
+import Demographic from "./pages/Domagraphic/Demographic";
 import Itens from "./pages/Itens/Itens";
 import Recommendation from "./pages/Recommendation/Recommendation";
 
@@ -19,6 +20,7 @@ function App() {
       <main>
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route exact path="/demographic" component={Demographic} />
           <Route exact path="/itens" component={Itens} />
           <Route exact path="/recommendation" component={Recommendation} />
         </Switch>
