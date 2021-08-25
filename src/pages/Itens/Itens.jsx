@@ -7,27 +7,28 @@ class Itens extends Component {
   state = {
     itens: [
       {
-        title: "Chuck Norris API - Example",
-        text: "Chuck Norris is the only person who can divide by 0.",
-        imageUrl: "https://assets.chucknorris.host/img/avatar/chuck-norris.png",
+        title: "Cassino Royale",
+        text: "",
+        imageUrl: "/007_poster.jpg",
       },
       {
-        title: "Chuck Norris API - Example",
-        text: "Chuck Norris is the only person who can divide by 0.",
-        imageUrl: "https://assets.chucknorris.host/img/avatar/chuck-norris.png",
+        title: "Shrek",
+        text: "",
+        imageUrl: "/shrek_poster.png",
       },
       {
-        title: "Chuck Norris API - Example",
-        text: "Chuck Norris is the only person who can divide by 0.",
-        imageUrl: "https://assets.chucknorris.host/img/avatar/chuck-norris.png",
+        title: "The Lord of the Rings",
+        text: "",
+        imageUrl: "/lor_poster.jpg",
       },
     ],
     profileItens: [],
   };
 
-  addItem = () => {
-    let state = { films: [] };
-    this.setState(state);
+  handleNext = (event) => {
+    event.preventDefault();
+
+    this.props.history.push("/recommendation");
   };
 
   render() {
@@ -48,6 +49,11 @@ class Itens extends Component {
               </Col>
             );
           })}
+        </Row>
+        <Row>
+          <Button onClick={this.handleNext}>
+            Next
+          </Button>
         </Row>
       </Container>
     );
