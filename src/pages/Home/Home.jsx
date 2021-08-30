@@ -54,8 +54,8 @@ class Home extends Component {
         </p>
 
         <p>
-          A coleta de dados ocorrerá de maneira online nas próximas
-          páginas, na seguinte ordem:
+          A coleta de dados ocorrerá de maneira online nas próximas páginas, na
+          seguinte ordem:
         </p>
 
         <ul>
@@ -91,6 +91,44 @@ class Home extends Component {
           Você receberá uma via do Termo de Consentimento Livre e Esclarecido
           assinada pelo pesquisador por meio do e-mail informado ao final deste
           termo.
+        </p>
+
+        <p>
+          É garantida indenização em casos de danos, comprovadamente,
+          decorrentes da participação na pesquisa, por meio de decisão judicial
+          ou extrajudicial. Não há qualquer valor econômico, a receber ou a
+          pagar, pela participação. No entanto, caso haja qualquer despesa
+          decorrente da participação na pesquisa, haverá ressarcimento na forma
+          de compensação material, exclusivamente de despesas do participante e
+          seus acompanhantes, quando necessário, tais como despesas
+          hospitalares, consulta médica no hospital, transporte e alimentação,
+          entre outras.
+        </p>
+
+        <p>
+          Projeto Aprovado pelo Comitê de Ética em Pesquisa com Seres Humanos da   
+          {" " + process.env.REACT_APP_COMMITTEE_NAME}.
+          <br />
+          Endereço: {process.env.REACT_APP_COMMITTEE_ADDRESS}
+          <br />
+          E-mail: {process.env.REACT_APP_COMMITTEE_MAIL}.
+          <br />
+          Fone: {process.env.REACT_APP_COMMITTEE_PHONE}.
+          <br />
+          Número CAAE: {process.env.REACT_APP_COMMITTEE_CAAE}
+          <br />
+          Número do Parecer de Aprovação da pesquisa pelo CEPH/FZEA:
+          {process.env.REACT_APP_COMMITTEE_NUM}
+          <br />
+          Data de Aprovação: {process.env.REACT_APP_COMMITTEE_APPROVAL}
+        </p>
+
+        <p>
+          Durante todo o período da pesquisa você poderá entrar em contato e
+          sanar dúvidas com o pesquisador responsável:
+          <br /> {process.env.REACT_APP_RESEACHER_NAME}
+          <br /> E-mail: {process.env.REACT_APP_RESEACHER_MAIL}
+          <br /> Fone: {process.env.REACT_APP_RESEACHER_PHONE}
         </p>
 
         <Form onSubmit={this.handleSubmit}>
