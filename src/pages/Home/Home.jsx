@@ -54,7 +54,7 @@ class Home extends Component {
         </p>
 
         <p>
-          Sua participação na pesquisa ocorrerá de maneira online nas próximas
+          A coleta de dados ocorrerá de maneira online nas próximas
           páginas, na seguinte ordem:
         </p>
 
@@ -79,7 +79,7 @@ class Home extends Component {
         </ul>
 
         <p>
-          O tempo estimado para o experimento é de aproximadamente 10 (dez)
+          O tempo estimado para o experimento é de aproximadamente 15 (quinze)
           minutos. Não há benefícios diretos aos participantes. Existe um
           desconforto e risco mínimo na participação da coleta de dados, pois os
           itens e suas explicações podem gerar pensamentos e sensações
@@ -94,16 +94,6 @@ class Home extends Component {
         </p>
 
         <Form onSubmit={this.handleSubmit}>
-          <Form.Group className="mb-3" controlId="userName">
-            <Form.Label>Nome do Participante</Form.Label>
-            <Form.Control type="text" placeholder="Nome Completo" />
-          </Form.Group>
-
-          <Form.Group className="mb-3" controlId="userEmail">
-            <Form.Label>Email para envio do TCLE assinado</Form.Label>
-            <Form.Control type="email" placeholder="Email" />
-          </Form.Group>
-
           <Form.Group className="mb-3" controlId="userAccept">
             <Form.Check
               type="checkbox"
