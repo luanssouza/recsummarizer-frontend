@@ -111,9 +111,9 @@ class Home extends Component {
           <br />
           Endereço: {process.env.REACT_APP_COMMITTEE_ADDRESS}
           <br />
-          E-mail: {process.env.REACT_APP_COMMITTEE_MAIL}.
+          E-mail: {process.env.REACT_APP_COMMITTEE_MAIL}
           <br />
-          Fone: {process.env.REACT_APP_COMMITTEE_PHONE}.
+          Fone: {process.env.REACT_APP_COMMITTEE_PHONE}
           <br />
           Número CAAE: {process.env.REACT_APP_COMMITTEE_CAAE}
           <br />
