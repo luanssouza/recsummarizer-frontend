@@ -9,6 +9,7 @@ import Home from "./pages/Home/Home";
 import Demographic from "./pages/Domagraphic/Demographic";
 import Itens from "./pages/Itens/Itens";
 import Recommendation from "./pages/Recommendation/Recommendation";
+import Explanation from "./pages/Explanation/Explanation";
 
 // Importing React Router
 import { Route, Switch } from "react-router-dom";
@@ -23,6 +24,7 @@ function App() {
           <Route exact path="/demographic" component={Demographic} />
           <Route exact path="/itens" component={Itens} />
           <Route exact path="/recommendation" component={Recommendation} />
+          <Route exact path="/explanation" component={Explanation} />
         </Switch>
       </main>
       <Footer />

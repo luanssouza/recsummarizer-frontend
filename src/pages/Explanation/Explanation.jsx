@@ -3,7 +3,7 @@ import React, { Component } from "react";
 // Bootstrap imports
 import { Button, Col, Container, Form, Image, Row } from "react-bootstrap";
 
-class Recommendation extends Component {
+class Explanation extends Component {
   state = {
     item: {
       title: "Gone in Sixty Seconds",
@@ -41,13 +41,13 @@ class Recommendation extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    this.props.history.push("/explanation");
+    this.props.history.push("/itens");
   };
 
   render() {
     return (
       <Container>
-        <h1 className="text-center">Recommendation</h1>
+        <h1 className="text-center">Compare the Explanations</h1>
         <hr />
         <h2 className="text-center">{this.state.item.title}</h2>
         <Row>
@@ -56,7 +56,16 @@ class Recommendation extends Component {
           </Col>
         </Row>
         <Row>
-          <Col className="text-center">{this.state.item.explanation}</Col>
+          <Col className="text-center" md={6}>
+            <strong>Explanation A</strong>
+            <br />
+            {this.state.item.explanation}
+          </Col>
+          <Col className="text-center" md={6}>
+            <strong>Explanation B</strong>
+            <br />
+            {this.state.item.explanation}
+          </Col>
         </Row>
 
         <Form onSubmit={this.handleSubmit}>
@@ -73,7 +82,10 @@ class Recommendation extends Component {
             </Form.Control>
           </Form.Group>
           <hr />
-          <h3>Questionnaire</h3>
+          <h3>
+            Select the explanation that better fit with the following
+            definitions:
+          </h3>
           <Form.Group controlId="understood">
             <Form.Label>
               I understood why this movie was recommended to me:
@@ -86,11 +98,8 @@ class Recommendation extends Component {
               <option value="" disabled selected>
                 Select a option
               </option>
-              <option value="0">Strongly disagree</option>
-              <option value="1">Disagree</option>
-              <option value="2">I don't know</option>
-              <option value="3">Strongly agree</option>
-              <option value="4">Agree</option>
+              <option value="0">Explanation A</option>
+              <option value="1">Explanation B</option>
             </Form.Control>
           </Form.Group>
           <Form.Group controlId="convincing">
@@ -105,11 +114,8 @@ class Recommendation extends Component {
               <option value="" disabled selected>
                 Select a option
               </option>
-              <option value="0">Strongly disagree</option>
-              <option value="1">Disagree</option>
-              <option value="2">I don't know</option>
-              <option value="3">Strongly agree</option>
-              <option value="4">Agree</option>
+              <option value="0">Explanation A</option>
+              <option value="1">Explanation B</option>
             </Form.Control>
           </Form.Group>
           <Form.Group controlId="discover">
@@ -125,11 +131,8 @@ class Recommendation extends Component {
               <option value="" disabled selected>
                 Select a option
               </option>
-              <option value="0">Strongly disagree</option>
-              <option value="1">Disagree</option>
-              <option value="2">I don't know</option>
-              <option value="3">Strongly agree</option>
-              <option value="4">Agree</option>
+              <option value="0">Explanation A</option>
+              <option value="1">Explanation B</option>
             </Form.Control>
           </Form.Group>
           <Form.Group controlId="trust">
@@ -144,11 +147,8 @@ class Recommendation extends Component {
               <option value="" disabled selected>
                 Select a option
               </option>
-              <option value="0">Strongly disagree</option>
-              <option value="1">Disagree</option>
-              <option value="2">I don't know</option>
-              <option value="3">Strongly agree</option>
-              <option value="4">Agree</option>
+              <option value="0">Explanation A</option>
+              <option value="1">Explanation B</option>
             </Form.Control>
           </Form.Group>
           <Button variant="primary" type="submit">
@@ -160,4 +160,4 @@ class Recommendation extends Component {
   }
 }
 
-export default Recommendation;
+export default Explanation;
