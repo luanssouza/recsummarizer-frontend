@@ -33,6 +33,7 @@ class Home extends Component {
           Diferentes Níveis de Detalhamento Usando Revisões de Usuários”.
         </p>
 
+        <h2>Justificativa e Objetivos</h2>
         <p>
           A presente pesquisa visa estudar como as explicações podem contribuir
           para a transparência e experiência do usuário em sistemas de
@@ -44,6 +45,9 @@ class Home extends Component {
           recomendações.
         </p>
 
+        <h2>
+          Garantia de Esclarecimento, Liberdade de Recursa e Garantia de Sigilo
+        </h2>
         <p>
           Sua participação é voluntária e em qualquer fase da pesquisa você
           poderá interromper o experimento, recusar-se a participar ou retirar
@@ -53,9 +57,13 @@ class Home extends Component {
           identificado(a) em nenhuma publicação resultante deste estudo.
         </p>
 
+        <h2>Abordagem e Procedimentos</h2>
+
         <p>
-          A coleta de dados ocorrerá de maneira online nas próximas páginas, na
-          seguinte ordem:
+          A abordagem será feita de maneira online, por meio de redes sociais e
+          e-mail, e os experimentos serão feitos através deste site. O tempo
+          estimado para o experimento é de aproximadamente 15 (quinze) minutos.
+          A coleta de dados na seguinte ordem:
         </p>
 
         <ul>
@@ -78,21 +86,17 @@ class Home extends Component {
           <li>Encerramento do experimento.</li>
         </ul>
 
+        <h2>Riscos e Benefícios</h2>
         <p>
-          O tempo estimado para o experimento é de aproximadamente 15 (quinze)
-          minutos. Não há benefícios diretos aos participantes. Existe um
-          desconforto e risco mínimo na participação da coleta de dados, pois os
-          itens e suas explicações podem gerar pensamentos e sensações
-          negativas. Nesse sentido, é importante destacar que a qualquer momento
-          você poderá interromper o preenchimento dos formulários.
+          Não há benefícios diretos aos participantes. Existe um risco mínimo na
+          participação da coleta de dados, pois os itens e suas explicações
+          podem gerar pensamentos e sensações negativas, bem como, um
+          desconforto em relação ao tempo gasto para responder o questionário.
+          Nesse sentido, é importante destacar que a qualquer momento você
+          poderá interromper sua participação.
         </p>
 
-        <p>
-          Você receberá uma via do Termo de Consentimento Livre e Esclarecido
-          assinada pelo pesquisador por meio do e-mail informado ao final deste
-          termo.
-        </p>
-
+        <h2>Garantia de Ressarcimento e Idenização por Eventuais Danos</h2>
         <p>
           É garantida indenização em casos de danos, comprovadamente,
           decorrentes da participação na pesquisa, por meio de decisão judicial
@@ -105,8 +109,11 @@ class Home extends Component {
           entre outras.
         </p>
 
+        <h2>Contatos</h2>
+
+        <h3>Comitê de Ética</h3>
         <p>
-          Projeto Aprovado pelo Comitê de Ética em Pesquisa com Seres Humanos da   
+          Projeto Aprovado pelo Comitê de Ética em Pesquisa com Seres Humanos da
           {" " + process.env.REACT_APP_COMMITTEE_NAME}.
           <br />
           Endereço: {process.env.REACT_APP_COMMITTEE_ADDRESS}
@@ -122,15 +129,19 @@ class Home extends Component {
           <br />
           Data de Aprovação: {process.env.REACT_APP_COMMITTEE_APPROVAL}
         </p>
-
+        
+        <h3>Pesquisar Responsável</h3>
         <p>
-          Durante todo o período da pesquisa você poderá entrar em contato e
-          sanar dúvidas com o pesquisador responsável:
-          <br /> {process.env.REACT_APP_RESEACHER_NAME}
+          {process.env.REACT_APP_RESEACHER_NAME}
           <br /> E-mail: {process.env.REACT_APP_RESEACHER_MAIL}
           <br /> Fone: {process.env.REACT_APP_RESEACHER_PHONE}
         </p>
-
+        
+        <p>
+          <a href="#home">Clique aqui para baixar uma cópia deste TCLE.</a>
+        </p>
+        
+        
         <Form onSubmit={this.handleSubmit}>
           <Form.Group className="mb-3" controlId="userAccept">
             <Form.Check
