@@ -109,7 +109,7 @@ class Home extends Component {
           entre outras.
         </p>
 
-        <h2>Contatos</h2>
+        <h2>Informações Adicionais</h2>
 
         <h3>Comitê de Ética</h3>
         <p>
