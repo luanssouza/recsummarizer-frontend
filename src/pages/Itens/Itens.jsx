@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 // Bootstrap imports
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
+import SearchBar from "../../components/SearchBar/SearchBar";
 
 class Itens extends Component {
   state = {
@@ -34,6 +35,9 @@ class Itens extends Component {
   render() {
     return (
       <Container>
+        <Row>
+          <SearchBar />
+        </Row>
         <Row>
           {this.state.itens.map((item, index) => {
             return (
