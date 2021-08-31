@@ -63,7 +63,7 @@ class Home extends Component {
           A abordagem será feita de maneira online, por meio de redes sociais e
           e-mail, e os experimentos serão feitos através deste site. O tempo
           estimado para o experimento é de aproximadamente 15 (quinze) minutos.
-          A coleta de dados na seguinte ordem:
+          A coleta de dados será feita em inglês, na seguinte ordem:
         </p>
 
         <ul>
@@ -96,7 +96,7 @@ class Home extends Component {
           poderá interromper sua participação.
         </p>
 
-        <h2>Garantia de Ressarcimento e Idenização por Eventuais Danos</h2>
+        <h2>Garantia de Ressarcimento e Idenização</h2>
         <p>
           É garantida indenização em casos de danos, comprovadamente,
           decorrentes da participação na pesquisa, por meio de decisão judicial
