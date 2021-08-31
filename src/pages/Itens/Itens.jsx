@@ -55,9 +55,11 @@ class Itens extends Component {
           })}
         </Row>
         <Row>
-          <Button onClick={this.handleNext}>
-            Next
-          </Button>
+          <Col md={{ span: 8, offset: 4 }}>
+            <Button onClick={this.handleNext} className="float-right mt-2">
+              Next
+            </Button>
+          </Col>
         </Row>
       </Container>
     );

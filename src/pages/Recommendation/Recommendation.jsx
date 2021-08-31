@@ -151,7 +151,7 @@ class Recommendation extends Component {
               <option value="4">Agree</option>
             </Form.Control>
           </Form.Group>
-          <Button variant="primary" type="submit">
+          <Button variant="primary" type="submit" className="float-right">
             Next
           </Button>
         </Form>

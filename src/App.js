@@ -27,6 +27,8 @@ function App() {
           <Route exact path="/explanation" component={Explanation} />
         </Switch>
       </main>
+      <br />
+      <br />
       <Footer />
     </div>
   );

@@ -129,19 +129,18 @@ class Home extends Component {
           <br />
           Data de Aprovação: {process.env.REACT_APP_COMMITTEE_APPROVAL}
         </p>
-        
+
         <h3>Pesquisar Responsável</h3>
         <p>
           {process.env.REACT_APP_RESEACHER_NAME}
           <br /> E-mail: {process.env.REACT_APP_RESEACHER_MAIL}
           <br /> Fone: {process.env.REACT_APP_RESEACHER_PHONE}
         </p>
-        
+
         <p>
           <a href="#home">Clique aqui para baixar uma cópia deste TCLE.</a>
         </p>
-        
-        
+
         <Form onSubmit={this.handleSubmit}>
           <Form.Group className="mb-3" controlId="userAccept">
             <Form.Check
@@ -152,7 +151,12 @@ class Home extends Component {
             />
           </Form.Group>
 
-          <Button variant="primary" type="submit" disabled={!this.state.accept}>
+          <Button
+            variant="primary"
+            type="submit"
+            disabled={!this.state.accept}
+            className="float-right"
+          >
             Próximo
           </Button>
         </Form>

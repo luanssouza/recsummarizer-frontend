@@ -90,7 +90,7 @@ class Demographic extends Component {
               <option value="2">I don't know</option>
             </Form.Control>
           </Form.Group>
-          <Button variant="primary" type="submit">
+          <Button variant="primary" type="submit" className="float-right">
             Next
           </Button>
         </Form>

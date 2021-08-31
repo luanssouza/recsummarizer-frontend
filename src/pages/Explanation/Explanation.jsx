@@ -139,7 +139,7 @@ class Explanation extends Component {
               <option value="1">Explanation B</option>
             </Form.Control>
           </Form.Group>
-          <Button variant="primary" type="submit">
+          <Button variant="primary" type="submit" className="float-right">
             Next
           </Button>
         </Form>
