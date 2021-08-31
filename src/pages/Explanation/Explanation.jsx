@@ -18,10 +18,10 @@ class Explanation extends Component {
       `,
     },
     details: 1,
-    understood: null,
-    convincing: null,
-    discover: null,
-    trust: null,
+    understood: "-1",
+    convincing: "-1",
+    discover: "-1",
+    trust: "-1",
   };
 
   handleChangeDetails = (event) =>
@@ -69,18 +69,6 @@ class Explanation extends Component {
         </Row>
 
         <Form onSubmit={this.handleSubmit}>
-          <Form.Group controlId="details">
-            <Form.Label>Level Of Deatils:</Form.Label>
-            <Form.Control
-              as="select"
-              value={this.state.details}
-              onChange={this.handleChangeDetails}
-            >
-              <option value="0">Short</option>
-              <option value="1">Medium</option>
-              <option value="2">Long</option>
-            </Form.Control>
-          </Form.Group>
           <hr />
           <h3>
             Select the explanation that better fit with the following
@@ -95,7 +83,7 @@ class Explanation extends Component {
               value={this.state.understood}
               onChange={this.handleChangeUnderstood}
             >
-              <option value="" disabled selected>
+              <option value="-1" disabled>
                 Select a option
               </option>
               <option value="0">Explanation A</option>
@@ -111,7 +99,7 @@ class Explanation extends Component {
               value={this.state.convincing}
               onChange={this.handleChangeConvincing}
             >
-              <option value="" disabled selected>
+              <option value="-1" disabled>
                 Select a option
               </option>
               <option value="0">Explanation A</option>
@@ -128,7 +116,7 @@ class Explanation extends Component {
               value={this.state.discover}
               onChange={this.handleChangeDiscover}
             >
-              <option value="" disabled selected>
+              <option value="-1" disabled>
                 Select a option
               </option>
               <option value="0">Explanation A</option>
@@ -144,7 +132,7 @@ class Explanation extends Component {
               value={this.state.trust}
               onChange={this.handleChangeTrust}
             >
-              <option value="" disabled selected>
+              <option value="-1" disabled>
                 Select a option
               </option>
               <option value="0">Explanation A</option>

@@ -18,10 +18,10 @@ class Recommendation extends Component {
       `,
     },
     details: 1,
-    understood: null,
-    convincing: null,
-    discover: null,
-    trust: null,
+    understood: "-1",
+    convincing: "-1",
+    discover: "-1",
+    trust: "-1",
   };
 
   handleChangeDetails = (event) =>
@@ -83,7 +83,7 @@ class Recommendation extends Component {
               value={this.state.understood}
               onChange={this.handleChangeUnderstood}
             >
-              <option value="" disabled selected>
+              <option value="-1" disabled>
                 Select a option
               </option>
               <option value="0">Strongly disagree</option>
@@ -102,7 +102,7 @@ class Recommendation extends Component {
               value={this.state.convincing}
               onChange={this.handleChangeConvincing}
             >
-              <option value="" disabled selected>
+              <option value="-1" disabled>
                 Select a option
               </option>
               <option value="0">Strongly disagree</option>
@@ -122,7 +122,7 @@ class Recommendation extends Component {
               value={this.state.discover}
               onChange={this.handleChangeDiscover}
             >
-              <option value="" disabled selected>
+              <option value="-1" disabled>
                 Select a option
               </option>
               <option value="0">Strongly disagree</option>
@@ -141,7 +141,7 @@ class Recommendation extends Component {
               value={this.state.trust}
               onChange={this.handleChangeTrust}
             >
-              <option value="" disabled selected>
+              <option value="-1" disabled>
                 Select a option
               </option>
               <option value="0">Strongly disagree</option>
