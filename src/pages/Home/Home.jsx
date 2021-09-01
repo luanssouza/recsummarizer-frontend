@@ -88,12 +88,13 @@ class Home extends Component {
 
         <h2>Riscos e Benefícios</h2>
         <p>
-          Não há benefícios diretos aos participantes. Existe um risco mínimo na
-          participação da coleta de dados, pois os itens e suas explicações
-          podem gerar pensamentos e sensações negativas, bem como, um
-          desconforto em relação ao tempo gasto para responder o questionário.
-          Nesse sentido, é importante destacar que a qualquer momento você
-          poderá interromper sua participação.
+          Não há benefícios diretos aos participantes. Existe o risco do
+          participante se sentir constrangido em relação aos itens e
+          explicações, pois estes podem gerar algum pensamento ou sensação
+          negativa, ou em responder alguma pergunta que não se sinta à vontade.
+          Existe um desconforto em relação ao tempo gasto para responder o
+          questionário. Nesse sentido, é importante destacar que a qualquer
+          momento você poderá interromper sua participação.
         </p>
 
         <h2>Garantia de Ressarcimento e Idenização</h2>
