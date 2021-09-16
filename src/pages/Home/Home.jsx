@@ -46,14 +46,14 @@ class Home extends Component {
         </p>
 
         <h2>
-          Garantia de Esclarecimento, Liberdade de Recursa e Garantia de Sigilo
+          Garantia de Esclarecimento, Liberdade de Recusa e Garantia de Sigilo
         </h2>
         <p>
           Sua participação é voluntária e em qualquer fase da pesquisa você
           poderá interromper o experimento, recusar-se a participar ou retirar
           seu consentimento, sem penalização alguma. Você será esclarecido(a)
           sobre a pesquisa em qualquer aspecto que desejar. Seus dados serão
-          tratados de maneira anônima e confidêncial, deste modo, você não será
+          tratados de maneira anônima e confidencial, deste modo, você não será
           identificado(a) em nenhuma publicação resultante deste estudo.
         </p>
 
@@ -97,9 +97,9 @@ class Home extends Component {
           momento você poderá interromper sua participação.
         </p>
 
-        <h2>Garantia de Ressarcimento e Idenização</h2>
+        <h2>Garantia de Ressarcimento e Indenização</h2>
         <p>
-          É garantida indenização em casos de danos, comprovadamente,
+          É garantida a indenização em casos de danos, comprovadamente,
           decorrentes da participação na pesquisa, por meio de decisão judicial
           ou extrajudicial. Não há qualquer valor econômico, a receber ou a
           pagar, pela participação. No entanto, caso haja qualquer despesa
@@ -131,7 +131,7 @@ class Home extends Component {
           Data de Aprovação: {process.env.REACT_APP_COMMITTEE_APPROVAL}
         </p>
 
-        <h3>Pesquisar Responsável</h3>
+        <h3>Pesquisador Responsável</h3>
         <p>
           {process.env.REACT_APP_RESEACHER_NAME}
           <br /> E-mail: {process.env.REACT_APP_RESEACHER_MAIL}
