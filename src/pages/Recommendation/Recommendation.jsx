@@ -4,40 +4,28 @@ import React, { Component } from "react";
 import { Button, Col, Container, Form, Image, Row } from "react-bootstrap";
 
 // Redux
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 class Recommendation extends Component {
-
-  state = {
-    item: {
-      title: "Gone in Sixty Seconds",
-      imageUrl: "/sixty_poster.jpg",
-      explanation: `
-        If you are a viewer interested in cars this production, by producer Jerry Bruckheimer
-        (”Con Air, ” ”The Rock”), is worth seeing just to feast your eyes on the glossy vehicles.
-        Though a little too long and not really full of action until the final twenty minutes, it
-        moves well and has a good cast: Nicolas Cage, Will Patton, Robert Duvall, Giovanni
-        Ribisi, Delroy Lindo, Christopher Eccleston, and others. The soundtrack to ”Gone in 60
-        Seconds” contributes a great deal to the inspirational action scenes.
-      `,
-    },
-    details: 1,
-    understood: "-1",
-    convincing: "-1",
-    discover: "-1",
-    trust: "-1",
-  };
 
   constructor(props) {
     super(props);
 
     let rec = this.props.recommendations.recommendations;
 
-    
+    this.state = {
+      item: rec,
+      details: 1,
+      understood: "-1",
+      convincing: "-1",
+      discover: "-1",
+      trust: "-1",
+    };
   }
 
-  handleChangeDetails = (event) =>
+  handleChangeDetails = (event) => {
     this.setState({ details: event.target.value });
+  }
 
   handleChangeUnderstood = (event) =>
     this.setState({ details: event.target.understood });
@@ -64,7 +52,7 @@ class Recommendation extends Component {
         <h2 className="text-center">{this.state.item.title}</h2>
         <Row>
           <Col className="text-center">
-            <Image src={this.state.item.imageUrl} />
+            <Image src={this.state.item.poster} />
           </Col>
         </Row>
         <Row>
