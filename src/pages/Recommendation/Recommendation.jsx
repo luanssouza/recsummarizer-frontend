@@ -3,7 +3,11 @@ import React, { Component } from "react";
 // Bootstrap imports
 import { Button, Col, Container, Form, Image, Row } from "react-bootstrap";
 
+// Redux
+import { connect } from 'react-redux';
+
 class Recommendation extends Component {
+
   state = {
     item: {
       title: "Gone in Sixty Seconds",
@@ -23,6 +27,14 @@ class Recommendation extends Component {
     discover: "-1",
     trust: "-1",
   };
+
+  constructor(props) {
+    super(props);
+
+    let rec = this.props.recommendations.recommendations;
+
+    
+  }
 
   handleChangeDetails = (event) =>
     this.setState({ details: event.target.value });
@@ -160,4 +172,10 @@ class Recommendation extends Component {
   }
 }
 
-export default Recommendation;
+const mapStateToProps = (state) => ({
+  recommendations: state.recommendations,
+});
+
+const mapDispatchToProps = (dispatch) => ({});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Recommendation);

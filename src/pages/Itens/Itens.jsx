@@ -14,6 +14,10 @@ import {
   getRecommendation,
 } from "../../services/recommender";
 
+// Redux
+import { connect } from 'react-redux';
+import { ADD_RECOMMENDATION } from '../../store/actions/actionsConst';
+
 class Itens extends Component {
   state = {
     itens: [],
@@ -43,6 +47,10 @@ class Itens extends Component {
     }
 
     getRecommendation(itens).then((response) => {
+      
+      let recommendations = response.data;
+      this.props.onSubmitRecommendation(recommendations);
+
       this.props.history.push("/recommendation");
     });
   };
@@ -99,4 +107,13 @@ class Itens extends Component {
   }
 }
 
-export default Itens;
+const mapStateToProps = (state) => ({
+  recommendations: state.recommendations,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onSubmitRecommendation: (value) =>
+      dispatch({ type: ADD_RECOMMENDATION, payload: value })
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Itens);
