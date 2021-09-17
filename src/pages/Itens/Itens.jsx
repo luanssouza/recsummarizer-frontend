@@ -4,23 +4,26 @@ import React, { Component } from "react";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import SearchBar from "../../components/SearchBar/SearchBar";
 
+// Services
+import { getItensByTitle } from "../../services/recommender";
+
 class Itens extends Component {
   state = {
     itens: [
       {
         title: "Cassino Royale",
         text: "",
-        imageUrl: "/007_poster.jpg",
+        poster: "/007_poster.jpg",
       },
       {
         title: "Shrek",
         text: "",
-        imageUrl: "/shrek_poster.png",
+        poster: "/shrek_poster.png",
       },
       {
         title: "The Lord of the Rings",
         text: "",
-        imageUrl: "/lor_poster.jpg",
+        poster: "/lor_poster.jpg",
       },
     ],
     profileItens: [],
@@ -32,11 +35,17 @@ class Itens extends Component {
     this.props.history.push("/recommendation");
   };
 
+  onSearch = (title) => {
+    getItensByTitle(title).then((response) => {
+      this.setState({ itens: response.data });
+    });
+  };
+
   render() {
     return (
       <Container>
         <Row>
-          <SearchBar />
+          <SearchBar onSearch={this.onSearch} />
         </Row>
         <Row>
           {this.state.itens.map((item, index) => {
@@ -45,7 +54,7 @@ class Itens extends Component {
                 <Card>
                   <Card.Header as="h5">{item.title}</Card.Header>
                   <Card.Body>
-                    <Card.Img variant="top" src={item.imageUrl} />
+                    <Card.Img variant="top" src={item.poster} />
                     <Card.Text>{item.text}</Card.Text>
                     <Button variant="primary">Like</Button>
                   </Card.Body>
