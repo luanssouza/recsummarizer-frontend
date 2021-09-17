@@ -4,13 +4,20 @@ import React, { Component } from "react";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import SearchBar from "../../components/SearchBar/SearchBar";
 
+// React Stars
+import ReactStars from "react-rating-stars-component";
+
 // Services
-import { getItens, getItensByTitle } from "../../services/recommender";
+import {
+  getItens,
+  getItensByTitle,
+  getRecommendation,
+} from "../../services/recommender";
 
 class Itens extends Component {
   state = {
     itens: [],
-    profileItens: [],
+    profileItens: {},
   };
 
   constructor(props) {
@@ -27,13 +34,29 @@ class Itens extends Component {
   handleNext = (event) => {
     event.preventDefault();
 
-    this.props.history.push("/recommendation");
+    let profileItens = this.state.profileItens;
+
+    let itens = [];
+
+    for (var [key, value] of Object.entries(profileItens)) {
+      itens.push({ movie_id: key, rating: value });
+    }
+
+    getRecommendation(itens).then((response) => {
+      this.props.history.push("/recommendation");
+    });
   };
 
   onSearch = (title) => {
     getItensByTitle(title).then((response) => {
       this.setState({ itens: response.data });
     });
+  };
+
+  onRate = (id, rate) => {
+    let profileItens = this.state.profileItens;
+    profileItens[id] = rate;
+    this.setState({ profileItens });
   };
 
   render() {
@@ -51,7 +74,13 @@ class Itens extends Component {
                   <Card.Body>
                     <Card.Img variant="top" src={item.poster} />
                     <Card.Text>{item.text}</Card.Text>
-                    <Button variant="primary">Like</Button>
+                    <ReactStars
+                      count={5}
+                      size={30}
+                      activeColor="#ffd700"
+                      onChange={(rate) => this.onRate(item.movie_id, rate)}
+                    />
+                    {/* <Button variant="primary">Like</Button> */}
                   </Card.Body>
                 </Card>
               </Col>
