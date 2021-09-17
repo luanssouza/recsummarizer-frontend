@@ -5,28 +5,23 @@ import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import SearchBar from "../../components/SearchBar/SearchBar";
 
 // Services
-import { getItensByTitle } from "../../services/recommender";
+import { getItens, getItensByTitle } from "../../services/recommender";
 
 class Itens extends Component {
   state = {
-    itens: [
-      {
-        title: "Cassino Royale",
-        text: "",
-        poster: "/007_poster.jpg",
-      },
-      {
-        title: "Shrek",
-        text: "",
-        poster: "/shrek_poster.png",
-      },
-      {
-        title: "The Lord of the Rings",
-        text: "",
-        poster: "/lor_poster.jpg",
-      },
-    ],
+    itens: [],
     profileItens: [],
+  };
+
+  constructor(props) {
+    super(props);
+    this.onInit();
+  }
+
+  onInit = () => {
+    getItens().then((response) => {
+      this.setState({ itens: response.data });
+    });
   };
 
   handleNext = (event) => {
