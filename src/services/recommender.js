@@ -9,3 +9,7 @@ export const getItensByTitle = async (title) =>
 
 export const getRecommendation = async (body) =>
   httpClient.post("recommender/recommendation", body);
+
+export const getExplanation = async (body) =>
+  httpClient.post("summarizer/explain", body);
+

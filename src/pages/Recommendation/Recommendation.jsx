@@ -5,9 +5,9 @@ import { Button, Col, Container, Form, Image, Row } from "react-bootstrap";
 
 // Redux
 import { connect } from "react-redux";
+import { getExplanation } from "../../services/recommender";
 
 class Recommendation extends Component {
-
   constructor(props) {
     super(props);
 
@@ -15,17 +15,37 @@ class Recommendation extends Component {
 
     this.state = {
       item: rec,
-      details: 1,
+      details: 10,
       understood: "-1",
       convincing: "-1",
       discover: "-1",
       trust: "-1",
     };
+
+    this.changeExplanation();
+  }
+
+  changeExplanation = () => {
+    let requestBody = {
+      "movie_id": this.state.item.movie_id,
+      "n_clusters": this.state.details,
+    };
+
+    getExplanation(requestBody).then(
+      (response) => {
+        let rec = this.state.item;
+        rec.explanation = response.data.explanation;
+
+        this.setState({ item: rec });
+      }
+    );
   }
 
   handleChangeDetails = (event) => {
     this.setState({ details: event.target.value });
-  }
+
+    this.changeExplanation();
+  };
 
   handleChangeUnderstood = (event) =>
     this.setState({ details: event.target.understood });
@@ -67,9 +87,9 @@ class Recommendation extends Component {
               value={this.state.details}
               onChange={this.handleChangeDetails}
             >
-              <option value="0">Short</option>
-              <option value="1">Medium</option>
-              <option value="2">Long</option>
+              <option value="5">Short</option>
+              <option value="10">Medium</option>
+              <option value="20">Long</option>
             </Form.Control>
           </Form.Group>
           <hr />
