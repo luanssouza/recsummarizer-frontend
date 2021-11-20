@@ -12,4 +12,5 @@ export const getRecommendation = async (body) =>
 
 export const getExplanation = async (body) =>
   httpClient.post("summarizer/explain", body);
-
+  
+export const getTcleUrl = () => `${process.env.REACT_APP_API_URL}resources/tcle`;

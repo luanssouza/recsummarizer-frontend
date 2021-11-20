@@ -3,6 +3,11 @@ import React, { Component } from "react";
 // Bootstrap imports
 import { Button, Container, Form } from "react-bootstrap";
 
+// Services
+import {
+  getTcleUrl
+} from "../../services/recommender";
+
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -139,7 +144,7 @@ class Home extends Component {
         </p>
 
         <p>
-          <a href="#home">Clique aqui para baixar uma cópia deste TCLE.</a>
+          <a href={getTcleUrl()} target="_blank">Clique aqui para baixar uma cópia deste TCLE.</a>
         </p>
 
         <Form onSubmit={this.handleSubmit}>
