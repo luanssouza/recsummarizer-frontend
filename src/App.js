@@ -13,25 +13,51 @@ import Explanation from "./pages/Explanation/Explanation";
 
 // Importing React Router
 import { Route, Switch } from "react-router-dom";
+import Loader from "./components/Loading/Loader";
 
-function App() {
-  return (
-    <div className="App">
-      <Header />
-      <main>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/demographic" component={Demographic} />
-          <Route exact path="/itens" component={Itens} />
-          <Route exact path="/recommendation" component={Recommendation} />
-          <Route exact path="/explanation" component={Explanation} />
-        </Switch>
-      </main>
-      <br />
-      <br />
-      <Footer />
-    </div>
-  );
+import React, { Component } from "react";
+
+class App extends Component {
+  state = { loading: true };
+
+  loaderFunction = (fn) => {
+    this.setState({ loading: false });
+    fn.finally(() => this.setState({ loading: true }));
+  };
+
+  loaderComponent = (Page) => {
+    return (props) => <Page {...props} loader={this.loaderFunction} />;
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <Loader hidden={this.state.loading} />
+        <Header />
+        <main>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/demographic" component={Demographic} />
+
+            <Route exact path="/itens" render={this.loaderComponent(Itens)} />
+            <Route
+              exact
+              path="/recommendation"
+              render={this.loaderComponent(Recommendation)}
+            />
+            <Route
+              exact
+              path="/explanation"
+              render={this.loaderComponent(Explanation)}
+            />
+          </Switch>
+        </main>
+        <br />
+        <br />
+        <Footer />
+      </div>
+    );
+  }
 }
 
 export default App;

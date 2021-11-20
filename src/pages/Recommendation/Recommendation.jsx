@@ -27,19 +27,19 @@ class Recommendation extends Component {
 
   changeExplanation = () => {
     let requestBody = {
-      "movie_id": this.state.item.movie_id,
-      "n_clusters": this.state.details,
+      movie_id: this.state.item.movie_id,
+      n_clusters: this.state.details,
     };
 
-    getExplanation(requestBody).then(
-      (response) => {
+    this.props.loader(
+      getExplanation(requestBody).then((response) => {
         let rec = this.state.item;
         rec.explanation = response.data.explanation;
 
         this.setState({ item: rec });
-      }
+      })
     );
-  }
+  };
 
   handleChangeDetails = (event) => {
     this.setState({ details: event.target.value });
@@ -48,15 +48,15 @@ class Recommendation extends Component {
   };
 
   handleChangeUnderstood = (event) =>
-    this.setState({ details: event.target.understood });
+    this.setState({ understood: event.target.understood });
 
   handleChangeConvincing = (event) =>
-    this.setState({ details: event.target.convincing });
+    this.setState({ convincing: event.target.convincing });
 
   handleChangeDiscover = (event) =>
-    this.setState({ details: event.target.discover });
+    this.setState({ discover: event.target.discover });
 
-  handleChangeTrust = (event) => this.setState({ details: event.target.trust });
+  handleChangeTrust = (event) => this.setState({ trust: event.target.trust });
 
   handleSubmit = (event) => {
     event.preventDefault();

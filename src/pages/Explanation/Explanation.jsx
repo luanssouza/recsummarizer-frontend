@@ -28,15 +28,15 @@ class Explanation extends Component {
     this.setState({ details: event.target.value });
 
   handleChangeUnderstood = (event) =>
-    this.setState({ details: event.target.understood });
+    this.setState({ understood: event.target.understood });
 
   handleChangeConvincing = (event) =>
-    this.setState({ details: event.target.convincing });
+    this.setState({ convincing: event.target.convincing });
 
   handleChangeDiscover = (event) =>
-    this.setState({ details: event.target.discover });
+    this.setState({ discover: event.target.discover });
 
-  handleChangeTrust = (event) => this.setState({ details: event.target.trust });
+  handleChangeTrust = (event) => this.setState({ trust: event.target.trust });
 
   handleSubmit = (event) => {
     event.preventDefault();

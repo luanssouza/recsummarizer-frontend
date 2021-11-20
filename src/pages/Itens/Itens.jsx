@@ -15,8 +15,8 @@ import {
 } from "../../services/recommender";
 
 // Redux
-import { connect } from 'react-redux';
-import { ADD_RECOMMENDATION } from '../../store/actions/actionsConst';
+import { connect } from "react-redux";
+import { ADD_RECOMMENDATION } from "../../store/actions/actionsConst";
 
 class Itens extends Component {
   state = {
@@ -30,9 +30,11 @@ class Itens extends Component {
   }
 
   onInit = () => {
-    getItens().then((response) => {
-      this.setState({ itens: response.data });
-    });
+    this.props.loader(
+      getItens().then((response) => {
+        this.setState({ itens: response.data });
+      })
+    );
   };
 
   handleNext = (event) => {
@@ -46,19 +48,22 @@ class Itens extends Component {
       itens.push({ movie_id: key, rating: value });
     }
 
-    getRecommendation(itens).then((response) => {
-      
-      let recommendations = response.data;
-      this.props.onSubmitRecommendation(recommendations);
+    this.props.loader(
+      getRecommendation(itens).then((response) => {
+        let recommendations = response.data;
+        this.props.onSubmitRecommendation(recommendations);
 
-      this.props.history.push("/recommendation");
-    });
+        this.props.history.push("/recommendation");
+      })
+    );
   };
 
   onSearch = (title) => {
-    getItensByTitle(title).then((response) => {
-      this.setState({ itens: response.data });
-    });
+    this.props.loader(
+      getItensByTitle(title).then((response) => {
+        this.setState({ itens: response.data });
+      })
+    );
   };
 
   onRate = (id, rate) => {
@@ -113,7 +118,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onSubmitRecommendation: (value) =>
-      dispatch({ type: ADD_RECOMMENDATION, payload: value })
+    dispatch({ type: ADD_RECOMMENDATION, payload: value }),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Itens);
