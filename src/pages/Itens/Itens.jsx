@@ -17,6 +17,7 @@ import {
 // Redux
 import { connect } from "react-redux";
 import { ADD_RECOMMENDATION } from "../../store/actions/actionsConst";
+import FloatButton from "../../components/FloatButton/FloatButton";
 
 class Itens extends Component {
   state = {
@@ -100,13 +101,8 @@ class Itens extends Component {
             );
           })}
         </Row>
-        <Row>
-          <Col md={{ span: 8, offset: 4 }}>
-            <Button onClick={this.handleNext} className="float-right mt-2">
-              Next
-            </Button>
-          </Col>
-        </Row>
+        <FloatButton buttonFunction={this.handleNext} title="Next" num={1} />
+        <FloatButton buttonFunction={this.handleNext} title="Itens" num={2} />
       </Container>
     );
   }
