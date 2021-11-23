@@ -17,12 +17,16 @@ import {
 // Redux
 import { connect } from "react-redux";
 import { ADD_RECOMMENDATION } from "../../store/actions/actionsConst";
+
+// Components
 import FloatButton from "../../components/FloatButton/FloatButton";
+import ModalItens from "../../components/ModalItens/ModalItens";
 
 class Itens extends Component {
   state = {
     itens: [],
     profileItens: {},
+    modalShow: false,
   };
 
   constructor(props) {
@@ -38,15 +42,13 @@ class Itens extends Component {
     );
   };
 
-  handleNext = (event) => {
-    event.preventDefault();
-
+  handleNext = () => {
     let profileItens = this.state.profileItens;
 
     let itens = [];
 
-    for (var [key, value] of Object.entries(profileItens)) {
-      itens.push({ movie_id: key, rating: value });
+    for (let [key, value] of Object.entries(profileItens)) {
+      itens.push({ movie_id: key, rating: value.rate });
     }
 
     this.props.loader(
@@ -69,8 +71,19 @@ class Itens extends Component {
 
   onRate = (id, rate) => {
     let profileItens = this.state.profileItens;
-    profileItens[id] = rate;
+    let item = this.state.itens[id];
+    profileItens[item.movie_id] = { ...item, ...{ rate: rate } };
     this.setState({ profileItens });
+  };
+
+  onDelete = (key) => {
+    let profileItens = this.state.profileItens;
+    delete profileItens[key];
+    this.setState({ profileItens: profileItens });
+  };
+
+  onModalChange = () => {
+    this.setState({ modalShow: !this.state.modalShow });
   };
 
   render() {
@@ -92,7 +105,7 @@ class Itens extends Component {
                       count={5}
                       size={30}
                       activeColor="#ffd700"
-                      onChange={(rate) => this.onRate(item.movie_id, rate)}
+                      onChange={(rate) => this.onRate(index, rate)}
                     />
                     {/* <Button variant="primary">Like</Button> */}
                   </Card.Body>
@@ -102,7 +115,18 @@ class Itens extends Component {
           })}
         </Row>
         <FloatButton buttonFunction={this.handleNext} title="Next" num={1} />
-        <FloatButton buttonFunction={this.handleNext} title="Itens" num={2} />
+        <FloatButton
+          buttonFunction={this.onModalChange}
+          title="Itens"
+          num={2}
+          disabled={Object.keys(this.state.profileItens).length === 0}
+        />
+        <ModalItens
+          show={this.state.modalShow}
+          onHide={this.onModalChange}
+          itens={this.state.profileItens}
+          onDelete={this.onDelete}
+        />
       </Container>
     );
   }
