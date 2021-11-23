@@ -1,6 +1,6 @@
 import { ADD_RECOMMENDATION } from "../../actions/actionsConst";
 
-export default (state = {}, action) => {
+const recommendationReducer =  (state = {}, action) => {
   switch (action.type) {
     case ADD_RECOMMENDATION:
       return {
@@ -11,3 +11,5 @@ export default (state = {}, action) => {
       return state;
   }
 };
+
+export default recommendationReducer;

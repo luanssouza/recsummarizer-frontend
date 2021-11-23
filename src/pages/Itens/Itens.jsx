@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 // Bootstrap imports
-import { Button, Card, Col, Container, Row } from "react-bootstrap";
+import { Card, Col, Container, Row } from "react-bootstrap";
 import SearchBar from "../../components/SearchBar/SearchBar";
 
 // React Stars
