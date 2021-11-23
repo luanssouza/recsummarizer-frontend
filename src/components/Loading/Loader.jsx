@@ -2,7 +2,7 @@ import "./Loader.css";
 
 import React from "react";
 
-function Loader(props) {
+const Loader = (props) => {
   return (
     <div className="loader-center" hidden={props.hidden}>
       <div className="spinner">

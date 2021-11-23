@@ -3,12 +3,12 @@ import "./FloatButton.css";
 import React from "react";
 import { Button } from "react-bootstrap";
 
-function vertPosition(num) {
+const vertPosition = (num) => {
   let position = num * 45;
   return { bottom: `${position}px` };
 }
 
-function FloatButton(props) {
+const FloatButton = (props) => {
   return (
     <Button
       onClick={props.buttonFunction}
