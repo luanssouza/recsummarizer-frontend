@@ -1,11 +1,7 @@
 import React, { Component } from "react";
 
 // Bootstrap imports
-import { Card, Col, Container, Row } from "react-bootstrap";
-import SearchBar from "../../components/SearchBar/SearchBar";
-
-// React Stars
-import ReactStars from "react-rating-stars-component";
+import { Col, Container, Row } from "react-bootstrap";
 
 // Services
 import {
@@ -19,8 +15,10 @@ import { connect } from "react-redux";
 import { ADD_RECOMMENDATION } from "../../store/actions/actionsConst";
 
 // Components
+import SearchBar from "../../components/SearchBar/SearchBar";
 import FloatButton from "../../components/FloatButton/FloatButton";
 import ModalItens from "../../components/ModalItens/ModalItens";
+import CardItem from "../../components/CardItem/CardItem";
 
 class Itens extends Component {
   state = {
@@ -64,7 +62,15 @@ class Itens extends Component {
   onSearch = (title) => {
     this.props.loader(
       getItensByTitle(title).then((response) => {
-        this.setState({ itens: response.data });
+        let profileItens = this.state.profileItens;
+        let profileItensKeys = Object.keys(this.state.profileItens).map(Number);
+        let itens = response.data;
+        itens.forEach((element) => {
+          if (profileItensKeys.includes(element.movie_id))
+            element.rate = profileItens[element.movie_id.toString()].rate;
+          else element.rate = 0;
+        });
+        this.setState({ itens: itens });
       })
     );
   };
@@ -96,20 +102,7 @@ class Itens extends Component {
           {this.state.itens.map((item, index) => {
             return (
               <Col md={4} key={index}>
-                <Card>
-                  <Card.Header as="h5">{item.title}</Card.Header>
-                  <Card.Body>
-                    <Card.Img variant="top" src={item.poster} />
-                    <Card.Text>{item.text}</Card.Text>
-                    <ReactStars
-                      count={5}
-                      size={30}
-                      activeColor="#ffd700"
-                      onChange={(rate) => this.onRate(index, rate)}
-                    />
-                    {/* <Button variant="primary">Like</Button> */}
-                  </Card.Body>
-                </Card>
+                <CardItem item={item} index={index} onRate={this.onRate} />
               </Col>
             );
           })}
