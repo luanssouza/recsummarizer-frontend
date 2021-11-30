@@ -9,8 +9,8 @@ import { Container } from "react-bootstrap";
 const Footer = () => {
   return (
     <footer className="footer">
-      <Container>
-        <span className="text-muted">Place sticky footer content here.</span>
+      <Container className="d-flex justify-content-end">
+        <a href="https://icmc.usp.br/">Instituto de Ciências Matemáticas e de Computação - ICMC</a>
       </Container>
     </footer>
   );

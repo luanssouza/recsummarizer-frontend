@@ -67,7 +67,7 @@ class Itens extends Component {
         let itens = response.data;
         itens.forEach((element) => {
           if (profileItensKeys.includes(element.movie_id))
-            element.rate = profileItens[element.movie_id.toString()].rate;
+            element.rate = profileItens[element.movie_id].rate;
           else element.rate = 0;
         });
         this.setState({ itens: itens });
