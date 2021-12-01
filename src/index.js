@@ -6,6 +6,9 @@ import App from "./App";
 // Bootstrap import
 import "bootstrap/dist/css/bootstrap.min.css";
 
+// React Bootstrap Range Slider import
+import "react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css";
+
 // React Roouter import
 import { BrowserRouter } from "react-router-dom";
 

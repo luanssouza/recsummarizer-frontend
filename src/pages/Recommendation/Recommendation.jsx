@@ -3,6 +3,9 @@ import React, { Component } from "react";
 // Bootstrap imports
 import { Button, Col, Container, Form, Image, Row } from "react-bootstrap";
 
+// React Bootstrap Range Slider imports
+import RangeSlider from "react-bootstrap-range-slider";
+
 // Redux
 import { connect } from "react-redux";
 import { getExplanation } from "../../services/recommender";
@@ -43,8 +46,6 @@ class Recommendation extends Component {
 
   handleChangeDetails = (event) => {
     this.setState({ details: event.target.value });
-
-    this.changeExplanation();
   };
 
   handleChangeUnderstood = (event) =>
@@ -78,19 +79,17 @@ class Recommendation extends Component {
         <Row>
           <Col className="text-center">{this.state.item.explanation}</Col>
         </Row>
-
+        <hr />
         <Form onSubmit={this.handleSubmit}>
           <Form.Group controlId="details">
             <Form.Label>Level Of Deatils:</Form.Label>
-            <Form.Control
-              as="select"
+            <RangeSlider
               value={this.state.details}
               onChange={this.handleChangeDetails}
-            >
-              <option value="5">Short</option>
-              <option value="10">Medium</option>
-              <option value="20">Long</option>
-            </Form.Control>
+              onAfterChange={this.changeExplanation}
+              min={1}
+              max={20}
+            />
           </Form.Group>
           <hr />
           <h3>Questionnaire</h3>
