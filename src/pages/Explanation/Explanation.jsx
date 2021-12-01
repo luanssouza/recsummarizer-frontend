@@ -3,25 +3,70 @@ import React, { Component } from "react";
 // Bootstrap imports
 import { Button, Col, Container, Form, Image, Row } from "react-bootstrap";
 
+// React Bootstrap Range Slider imports
+import RangeSlider from "react-bootstrap-range-slider";
+
+// Redux import
+import { connect } from "react-redux";
+
+// Service import
+import {
+  getExplanation,
+  getExplanationBaseline,
+} from "../../services/recommender";
+
 class Explanation extends Component {
-  state = {
-    item: {
-      title: "Gone in Sixty Seconds",
-      imageUrl: "/sixty_poster.jpg",
-      explanation: `
-        If you are a viewer interested in cars this production, by producer Jerry Bruckheimer
-        (”Con Air, ” ”The Rock”), is worth seeing just to feast your eyes on the glossy vehicles.
-        Though a little too long and not really full of action until the final twenty minutes, it
-        moves well and has a good cast: Nicolas Cage, Will Patton, Robert Duvall, Giovanni
-        Ribisi, Delroy Lindo, Christopher Eccleston, and others. The soundtrack to ”Gone in 60
-        Seconds” contributes a great deal to the inspirational action scenes.
-      `,
-    },
-    details: 1,
-    understood: "-1",
-    convincing: "-1",
-    discover: "-1",
-    trust: "-1",
+  constructor(props) {
+    super(props);
+
+    let rec = this.props.recommendations.recommendations;
+
+    this.state = {
+      item: rec,
+      details: 10,
+      understood: "-1",
+      convincing: "-1",
+      discover: "-1",
+      trust: "-1",
+    };
+
+    this.getExplanations();
+  }
+
+  getExplanations = () => {
+    let requestBody = {
+      movie_id: this.state.item.movie_id,
+      n_clusters: this.state.details,
+    };
+
+    this.props.loader(
+      Promise.all([
+        getExplanation(requestBody),
+        getExplanationBaseline(requestBody),
+      ]).then((responses) => {
+        let rec = this.state.item;
+        rec.explanationA = responses[0].data.explanation;
+        rec.explanationB = responses[1].data.explanation;
+
+        this.setState({ item: rec });
+      })
+    );
+  };
+
+  changeExplanation = () => {
+    let requestBody = {
+      movie_id: this.state.item.movie_id,
+      n_clusters: this.state.details,
+    };
+
+    this.props.loader(
+      getExplanation(requestBody).then((response) => {
+        let rec = this.state.item;
+        rec.explanationA = response.data.explanation;
+
+        this.setState({ item: rec });
+      })
+    );
   };
 
   handleChangeDetails = (event) =>
@@ -52,23 +97,34 @@ class Explanation extends Component {
         <h2 className="text-center">{this.state.item.title}</h2>
         <Row>
           <Col className="text-center">
-            <Image src={this.state.item.imageUrl} />
+            <Image src={this.state.item.poster} />
           </Col>
         </Row>
         <Row>
           <Col className="text-center" md={6}>
             <strong>Explanation A</strong>
             <br />
-            {this.state.item.explanation}
+            {this.state.item.explanationA}
           </Col>
           <Col className="text-center" md={6}>
             <strong>Explanation B</strong>
             <br />
-            {this.state.item.explanation}
+            {this.state.item.explanationB}
           </Col>
         </Row>
 
         <Form onSubmit={this.handleSubmit}>
+          <hr />
+          <Form.Group controlId="details">
+            <Form.Label>Level Of Deatils:</Form.Label>
+            <RangeSlider
+              value={this.state.details}
+              onChange={this.handleChangeDetails}
+              onAfterChange={this.changeExplanation}
+              min={1}
+              max={20}
+            />
+          </Form.Group>
           <hr />
           <h3>
             Select the explanation that better fit with the following
@@ -148,4 +204,10 @@ class Explanation extends Component {
   }
 }
 
-export default Explanation;
+const mapStateToProps = (state) => ({
+  recommendations: state.recommendations,
+});
+
+const mapDispatchToProps = (dispatch) => ({});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Explanation);

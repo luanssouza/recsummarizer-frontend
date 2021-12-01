@@ -6,8 +6,10 @@ import { Button, Col, Container, Form, Image, Row } from "react-bootstrap";
 // React Bootstrap Range Slider imports
 import RangeSlider from "react-bootstrap-range-slider";
 
-// Redux
+// Redux import
 import { connect } from "react-redux";
+
+// Service import
 import { getExplanation } from "../../services/recommender";
 
 class Recommendation extends Component {
@@ -79,8 +81,8 @@ class Recommendation extends Component {
         <Row>
           <Col className="text-center">{this.state.item.explanation}</Col>
         </Row>
-        <hr />
         <Form onSubmit={this.handleSubmit}>
+          <hr />
           <Form.Group controlId="details">
             <Form.Label>Level Of Deatils:</Form.Label>
             <RangeSlider
