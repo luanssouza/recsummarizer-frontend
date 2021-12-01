@@ -4,7 +4,7 @@ import React from "react";
 import { Button } from "react-bootstrap";
 
 const vertPosition = (num) => {
-  let position = num * 45;
+  let position = num * 50 + 20;
   return { bottom: `${position}px` };
 };
 
