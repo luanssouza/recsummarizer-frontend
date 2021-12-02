@@ -23,6 +23,10 @@ body {
     padding-top: 20px;
     height: 100px;
   }
+
+  body {
+    margin-bottom: 100px !important; /* Margin bottom by footer height */
+  }
 }
 
 @media only screen and (max-width: 267px) {
