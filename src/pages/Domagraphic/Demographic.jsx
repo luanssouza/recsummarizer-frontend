@@ -16,6 +16,10 @@ class Demographic extends Component {
     };
   }
 
+  componentDidMount() {
+    window.scrollTo(0,0);
+  }
+
   handleChangeAge = (event) => this.setState({ age: event.target.value });
 
   handleChangeGender = (event) => this.setState({ gender: event.target.value });

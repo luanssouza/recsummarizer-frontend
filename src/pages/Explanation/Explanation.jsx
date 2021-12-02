@@ -33,6 +33,10 @@ class Explanation extends Component {
     this.getExplanations();
   }
 
+  componentDidMount() {
+    window.scrollTo(0,0);
+  }
+
   getExplanations = () => {
     let requestBody = {
       movie_id: this.state.item.movie_id,
@@ -86,7 +90,7 @@ class Explanation extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    this.props.history.push("/itens");
+    this.props.history.push("/final");
   };
 
   render() {

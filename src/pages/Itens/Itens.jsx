@@ -39,6 +39,10 @@ class Itens extends Component {
       })
     );
   };
+  
+  componentDidMount() {
+    window.scrollTo(0,0);
+  }
 
   handleNext = () => {
     let profileItens = this.state.profileItens;

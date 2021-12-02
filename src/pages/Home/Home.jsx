@@ -10,6 +10,10 @@ class Home extends Component {
     this.state = { accept: false };
   }
 
+  componentDidMount() {
+    window.scrollTo(0,0);
+  }
+
   handleChangeAccept = () => {
     this.setState({ accept: !this.state.accept });
   };
@@ -125,7 +129,8 @@ class Home extends Component {
           <br />
           Número CAAE: {process.env.REACT_APP_COMMITTEE_CAAE}
           <br />
-          Número do Parecer de Aprovação da pesquisa pelo CEPH/FZEA: {process.env.REACT_APP_COMMITTEE_NUM}
+          Número do Parecer de Aprovação da pesquisa pelo CEPH/FZEA:{" "}
+          {process.env.REACT_APP_COMMITTEE_NUM}
           <br />
           Data de Aprovação: {process.env.REACT_APP_COMMITTEE_APPROVAL}
         </p>
@@ -138,7 +143,13 @@ class Home extends Component {
         </p>
 
         <p>
-          <a href={process.env.REACT_APP_TCLE_FILE} target="_blank" rel="noreferrer">Clique aqui para baixar uma cópia deste TCLE.</a>
+          <a
+            href={process.env.REACT_APP_TCLE_FILE}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Clique aqui para baixar uma cópia deste TCLE.
+          </a>
         </p>
 
         <Form onSubmit={this.handleSubmit}>

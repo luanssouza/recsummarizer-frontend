@@ -30,6 +30,10 @@ class Recommendation extends Component {
     this.changeExplanation();
   }
 
+  componentDidMount() {
+    window.scrollTo(0,0);
+  }
+
   changeExplanation = () => {
     let requestBody = {
       movie_id: this.state.item.movie_id,
