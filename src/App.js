@@ -10,6 +10,7 @@ import Demographic from "./pages/Domagraphic/Demographic";
 import Itens from "./pages/Itens/Itens";
 import Recommendation from "./pages/Recommendation/Recommendation";
 import Explanation from "./pages/Explanation/Explanation";
+import Final from "./pages/Final/Final";
 
 // Importing React Router
 import { Route, Switch } from "react-router-dom";
@@ -50,6 +51,8 @@ class App extends Component {
               path="/explanation"
               render={this.loaderComponent(Explanation)}
             />
+
+            <Route exact path="/final" component={Final} />
           </Switch>
         </main>
         <br />
