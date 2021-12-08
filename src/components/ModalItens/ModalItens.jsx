@@ -20,13 +20,13 @@ const ModalItens = (props) => {
             return (
               <ListGroup.Item key={index}>
                 <Row>
-                  <Col md={2}>
+                  <Col xs sm md={2}>
                     <Image src={item.poster} fluid />
                   </Col>
-                  <Col md={6} className="my-auto">
+                  <Col xs sm md={6} className="my-auto">
                     {item.title}
                   </Col>
-                  <Col md={4} className="my-auto">
+                  <Col xs sm md={4} className="my-auto">
                     <Button
                       variant="danger"
                       onClick={() => props.onDelete(key)}
