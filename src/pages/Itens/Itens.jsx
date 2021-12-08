@@ -80,16 +80,30 @@ class Itens extends Component {
   };
 
   onRate = (id, rate) => {
+    let itens = this.state.itens;
+
+    itens[id].rate = rate;
+    let item = itens[id];
+
     let profileItens = this.state.profileItens;
-    let item = this.state.itens[id];
     profileItens[item.movie_id] = { ...item, ...{ rate: rate } };
-    this.setState({ profileItens });
+
+    this.setState({ profileItens: profileItens, itens: itens });
   };
 
   onDelete = (key) => {
     let profileItens = this.state.profileItens;
     delete profileItens[key];
-    this.setState({ profileItens: profileItens });
+
+    let profileItensKeys = Object.keys(this.state.profileItens).map(Number);
+    let itens = this.state.itens;
+    itens.forEach((element) => {
+      if (profileItensKeys.includes(element.movie_id))
+        element.rate = profileItens[element.movie_id].rate;
+      else element.rate = 0;
+    });
+    
+    this.setState({ profileItens: profileItens, itens: itens });
   };
 
   onModalChange = () => {
@@ -106,7 +120,7 @@ class Itens extends Component {
           {this.state.itens.map((item, index) => {
             return (
               <Col md={4} key={index}>
-                <CardItem item={item} index={index} onRate={this.onRate} />
+                <CardItem item={item} index={index} onRate={this.onRate} value={this.state.value} />
               </Col>
             );
           })}

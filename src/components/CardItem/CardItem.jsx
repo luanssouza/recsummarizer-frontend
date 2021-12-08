@@ -4,22 +4,35 @@ import React from "react";
 import { Card } from "react-bootstrap";
 
 // React Stars
-import ReactStars from "react-rating-stars-component";
+import Rating from "react-rating";
 
 const CardItem = (props) => {
   return (
-    <Card>
+    <Card className="text-center">
       <Card.Header as="h5">{props.item.title}</Card.Header>
       <Card.Body>
         <Card.Img variant="top" src={props.item.poster} />
         <Card.Text>{props.item.text}</Card.Text>
-        <ReactStars
-          count={5}
-          size={30}
-          activeColor="#ffd700"
+        <Rating
+          initialRating={props.item.rate}
           onChange={(rate) => props.onRate(props.index, rate)}
+          emptySymbol={
+            <img
+              src="/star.svg"
+              width="32px"
+              className="icon"
+              alt="empty star"
+            />
+          }
+          fullSymbol={
+            <img
+              src="/star-fill.svg"
+              width="32px"
+              className="icon"
+              alt="full star"
+            />
+          }
         />
-        {/* <Button variant="primary">Like</Button> */}
       </Card.Body>
     </Card>
   );
