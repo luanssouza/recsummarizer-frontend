@@ -38,6 +38,7 @@ class Recommendation extends Component {
     let requestBody = {
       movie_id: this.state.item.movie_id,
       n_clusters: this.state.details,
+      rates: this.props.itens.itens
     };
 
     this.props.loader(
@@ -187,6 +188,7 @@ class Recommendation extends Component {
 
 const mapStateToProps = (state) => ({
   recommendations: state.recommendations,
+  itens: state.itens
 });
 
 const mapDispatchToProps = (dispatch) => ({});

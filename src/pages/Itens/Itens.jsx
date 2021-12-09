@@ -12,7 +12,7 @@ import {
 
 // Redux
 import { connect } from "react-redux";
-import { ADD_RECOMMENDATION } from "../../store/actions/actionsConst";
+import { ADD_ITENS, ADD_RECOMMENDATION } from "../../store/actions/actionsConst";
 
 // Components
 import SearchBar from "../../components/SearchBar/SearchBar";
@@ -56,6 +56,7 @@ class Itens extends Component {
     this.props.loader(
       getRecommendation(itens).then((response) => {
         let recommendations = response.data;
+        this.props.onSubmitItens(itens);
         this.props.onSubmitRecommendation(recommendations);
 
         this.props.history.push("/recommendation");
@@ -145,11 +146,14 @@ class Itens extends Component {
 
 const mapStateToProps = (state) => ({
   recommendations: state.recommendations,
+  itens: state.itens,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onSubmitRecommendation: (value) =>
     dispatch({ type: ADD_RECOMMENDATION, payload: value }),
+  onSubmitItens: (value) =>
+    dispatch({ type: ADD_ITENS, payload: value }),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Itens);

@@ -11,7 +11,7 @@ export const getRecommendation = async (body) =>
   httpClient.post("recommender/recommendation", body);
 
 export const getExplanation = async (body) =>
-  httpClient.post("summarizer/explain", body);
+  httpClient.post("summarizer/summarize", body);
 
 export const getExplanationBaseline = async (body) =>
   httpClient.post("summarizer/baseline", body);
