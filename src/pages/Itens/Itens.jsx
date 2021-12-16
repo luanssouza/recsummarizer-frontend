@@ -12,7 +12,10 @@ import {
 
 // Redux
 import { connect } from "react-redux";
-import { ADD_ITENS, ADD_RECOMMENDATION } from "../../store/actions/actionsConst";
+import {
+  ADD_ITENS,
+  ADD_RECOMMENDATION,
+} from "../../store/actions/actionsConst";
 
 // Components
 import SearchBar from "../../components/SearchBar/SearchBar";
@@ -39,9 +42,9 @@ class Itens extends Component {
       })
     );
   };
-  
+
   componentDidMount() {
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
   }
 
   handleNext = () => {
@@ -53,8 +56,13 @@ class Itens extends Component {
       itens.push({ movie_id: key, rating: value.rate });
     }
 
+    let requestBody = {
+      user_id: this.props.user.user.user_id,
+      rates: itens,
+    };
+
     this.props.loader(
-      getRecommendation(itens).then((response) => {
+      getRecommendation(requestBody).then((response) => {
         let recommendations = response.data;
         this.props.onSubmitItens(itens);
         this.props.onSubmitRecommendation(recommendations);
@@ -103,7 +111,7 @@ class Itens extends Component {
         element.rate = profileItens[element.movie_id].rate;
       else element.rate = 0;
     });
-    
+
     this.setState({ profileItens: profileItens, itens: itens });
   };
 
@@ -121,7 +129,12 @@ class Itens extends Component {
           {this.state.itens.map((item, index) => {
             return (
               <Col md={4} key={index}>
-                <CardItem item={item} index={index} onRate={this.onRate} value={this.state.value} />
+                <CardItem
+                  item={item}
+                  index={index}
+                  onRate={this.onRate}
+                  value={this.state.value}
+                />
               </Col>
             );
           })}
@@ -147,13 +160,13 @@ class Itens extends Component {
 const mapStateToProps = (state) => ({
   recommendations: state.recommendations,
   itens: state.itens,
+  user: state.user,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onSubmitRecommendation: (value) =>
     dispatch({ type: ADD_RECOMMENDATION, payload: value }),
-  onSubmitItens: (value) =>
-    dispatch({ type: ADD_ITENS, payload: value }),
+  onSubmitItens: (value) => dispatch({ type: ADD_ITENS, payload: value }),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Itens);

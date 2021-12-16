@@ -38,7 +38,11 @@ class App extends Component {
         <main>
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/demographic" component={Demographic} />
+            <Route
+              exact
+              path="/demographic"
+              render={this.loaderComponent(Demographic)}
+            />
 
             <Route exact path="/itens" render={this.loaderComponent(Itens)} />
             <Route

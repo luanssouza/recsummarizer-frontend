@@ -3,6 +3,11 @@ import React, { Component } from "react";
 // Bootstrap imports
 import { Button, Container, Form } from "react-bootstrap";
 
+// Redux
+import { connect } from "react-redux";
+import { postUser } from "../../services/recommender";
+import { ADD_USER } from "../../store/actions/actionsConst";
+
 class Demographic extends Component {
   constructor(props) {
     super(props);
@@ -17,7 +22,7 @@ class Demographic extends Component {
   }
 
   componentDidMount() {
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
   }
 
   handleChangeAge = (event) => this.setState({ age: event.target.value });
@@ -33,7 +38,24 @@ class Demographic extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    this.props.history.push("/itens");
+    let requestBody = {
+      user: {
+        age: this.state.age,
+        gender: this.state.gender,
+        education: this.state.education,
+        recommender: this.state.usedRecSys,
+        accept: 1,
+      },
+    };
+
+    this.props.loader(
+      postUser(requestBody).then((response) => {
+        let user = requestBody.user;
+        user.user_id = response.data.user_id;
+        this.props.onSubmitUser(user);
+        this.props.history.push("/itens");
+      })
+    );
   };
 
   render() {
@@ -103,4 +125,12 @@ class Demographic extends Component {
   }
 }
 
-export default Demographic;
+const mapStateToProps = (state) => ({
+  user: state.user,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onSubmitUser: (value) => dispatch({ type: ADD_USER, payload: value }),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Demographic);

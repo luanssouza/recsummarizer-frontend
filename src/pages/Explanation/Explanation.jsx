@@ -13,6 +13,7 @@ import { connect } from "react-redux";
 import {
   getExplanation,
   getExplanationBaseline,
+  postCompare,
 } from "../../services/recommender";
 
 class Explanation extends Component {
@@ -34,14 +35,14 @@ class Explanation extends Component {
   }
 
   componentDidMount() {
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
   }
 
   getExplanations = () => {
     let requestBody = {
       movie_id: this.state.item.movie_id,
       n_clusters: this.state.details,
-      rates: this.props.itens.itens
+      rates: this.props.itens.itens,
     };
 
     this.props.loader(
@@ -62,6 +63,7 @@ class Explanation extends Component {
     let requestBody = {
       movie_id: this.state.item.movie_id,
       n_clusters: this.state.details,
+      rates: this.props.itens.itens,
     };
 
     this.props.loader(
@@ -78,20 +80,35 @@ class Explanation extends Component {
     this.setState({ details: event.target.value });
 
   handleChangeUnderstood = (event) =>
-    this.setState({ understood: event.target.understood });
+    this.setState({ understood: event.target.value });
 
   handleChangeConvincing = (event) =>
-    this.setState({ convincing: event.target.convincing });
+    this.setState({ convincing: event.target.value });
 
   handleChangeDiscover = (event) =>
-    this.setState({ discover: event.target.discover });
+    this.setState({ discover: event.target.value });
 
-  handleChangeTrust = (event) => this.setState({ trust: event.target.trust });
+  handleChangeTrust = (event) => this.setState({ trust: event.target.value });
 
   handleSubmit = (event) => {
     event.preventDefault();
 
-    this.props.history.push("/final");
+    let requestBody = {
+      compare: {
+        user_id: this.props.user.user.user_id,
+        movie_id: this.state.item.movie_id,
+        understood: this.state.understood,
+        convincing: this.state.convincing,
+        discover: this.state.discover,
+        trust: this.state.trust,
+      },
+    };
+
+    this.props.loader(
+      postCompare(requestBody).then(() => {
+        this.props.history.push("/final");
+      })
+    );
   };
 
   render() {
@@ -131,10 +148,10 @@ class Explanation extends Component {
             />
           </Form.Group>
           <hr />
-          <h3>
+          {/* <h3>
             Select the explanation that better fit with the following
             definitions:
-          </h3>
+          </h3> */}
           <Form.Group controlId="understood">
             <Form.Label>
               I understood why this movie was recommended to me:
@@ -211,7 +228,8 @@ class Explanation extends Component {
 
 const mapStateToProps = (state) => ({
   recommendations: state.recommendations,
-  itens: state.itens
+  itens: state.itens,
+  user: state.user,
 });
 
 const mapDispatchToProps = (dispatch) => ({});
