@@ -119,12 +119,23 @@ class Itens extends Component {
     this.setState({ modalShow: !this.state.modalShow });
   };
 
+  profileItensLen = () => Object.keys(this.state.profileItens).length;
+
   render() {
     return (
       <Container>
+        <h4 className="d-flex justify-content-center">
+          Rate at least 10 movies.
+        </h4>
         <Row>
           <SearchBar onSearch={this.onSearch} />
         </Row>
+
+        {this.state.itens.length === 0 && (
+          <h4 className="d-flex justify-content-center">
+            Unfortunatly, we can't find movies.
+          </h4>
+        )}
         <Row>
           {this.state.itens.map((item, index) => {
             return (
@@ -139,12 +150,17 @@ class Itens extends Component {
             );
           })}
         </Row>
-        <FloatButton buttonFunction={this.handleNext} title="Next" num={1} />
+        <FloatButton
+          buttonFunction={this.handleNext}
+          title="Next"
+          num={1}
+          disabled={this.profileItensLen() < 10}
+        />
         <FloatButton
           buttonFunction={this.onModalChange}
-          title="Itens"
+          title={`Itens ${this.profileItensLen()}/10`}
           num={2}
-          disabled={Object.keys(this.state.profileItens).length === 0}
+          disabled={this.profileItensLen() === 0}
         />
         <ModalItens
           show={this.state.modalShow}
