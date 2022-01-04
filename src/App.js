@@ -17,6 +17,7 @@ import { Route, Switch } from "react-router-dom";
 import Loader from "./components/Loading/Loader";
 
 import React, { Component } from "react";
+import ItemTries from "./pages/ItemTries/ItemTries";
 
 class App extends Component {
   state = { loading: true };
@@ -43,7 +44,6 @@ class App extends Component {
               path="/demographic"
               render={this.loaderComponent(Demographic)}
             />
-
             <Route exact path="/itens" render={this.loaderComponent(Itens)} />
             <Route
               exact
@@ -52,10 +52,14 @@ class App extends Component {
             />
             <Route
               exact
+              path="/itemTries"
+              render={this.loaderComponent(ItemTries)}
+            />
+            <Route
+              exact
               path="/explanation"
               render={this.loaderComponent(Explanation)}
             />
-
             <Route exact path="/final" component={Final} />
           </Switch>
         </main>
