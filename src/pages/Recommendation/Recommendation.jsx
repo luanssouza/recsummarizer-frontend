@@ -8,6 +8,7 @@ import RangeSlider from "react-bootstrap-range-slider";
 
 // Redux import
 import { connect } from "react-redux";
+import Option from "../../components/Option/Option";
 
 // Service import
 import { getExplanation, postEvaluation } from "../../services/recommender";
@@ -92,7 +93,7 @@ class Recommendation extends Component {
 
     this.props.loader(
       postEvaluation(requestBody).then(() => {
-        this.props.history.push("/explanation");
+        this.props.history.push("/itemTries");
       })
     );
   };
@@ -125,121 +126,45 @@ class Recommendation extends Component {
             />
           </Form.Group>
           <hr />
-          <Form.Group controlId="liked">
-            <Form.Label>I liked this recommendation:</Form.Label>
-            <Form.Control
-              as="select"
-              value={this.state.liked}
-              onChange={this.handleChangeLiked}
-            >
-              <option value="-1" disabled>
-                Select a option
-              </option>
-              <option value="0">Strongly disagree</option>
-              <option value="1">Disagree</option>
-              <option value="2">I don't know</option>
-              <option value="3">Strongly agree</option>
-              <option value="4">Agree</option>
-            </Form.Control>
-          </Form.Group>
-          <Form.Group controlId="understood">
-            <Form.Label>
-              I understood why this recommendation was made to me:
-            </Form.Label>
-            <Form.Control
-              as="select"
-              value={this.state.understood}
-              onChange={this.handleChangeUnderstood}
-            >
-              <option value="-1" disabled>
-                Select a option
-              </option>
-              <option value="0">Strongly disagree</option>
-              <option value="1">Disagree</option>
-              <option value="2">I don't know</option>
-              <option value="3">Strongly agree</option>
-              <option value="4">Agree</option>
-            </Form.Control>
-          </Form.Group>
-          <Form.Group controlId="interest">
-            <Form.Label>
-              The explanation increased my interest on this recommendation:
-            </Form.Label>
-            <Form.Control
-              as="select"
-              value={this.state.interest}
-              onChange={this.handleChangeInterest}
-            >
-              <option value="-1" disabled>
-                Select a option
-              </option>
-              <option value="0">Strongly disagree</option>
-              <option value="1">Disagree</option>
-              <option value="2">I don't know</option>
-              <option value="3">Strongly agree</option>
-              <option value="4">Agree</option>
-            </Form.Control>
-          </Form.Group>
-          <Form.Group controlId="discover">
-            <Form.Label>
-              The explanation helped me discover new information about this
-              movie:
-            </Form.Label>
-            <Form.Control
-              as="select"
-              value={this.state.discover}
-              onChange={this.handleChangeDiscover}
-            >
-              <option value="-1" disabled>
-                Select a option
-              </option>
-              <option value="0">Strongly disagree</option>
-              <option value="1">Disagree</option>
-              <option value="2">I don't know</option>
-              <option value="3">Strongly agree</option>
-              <option value="4">Agree</option>
-            </Form.Control>
-          </Form.Group>
-          <Form.Group controlId="levelDiscover">
-            <Form.Label>
-              The explanation levels assist me to discover new informations
-              about the recommended movie:
-            </Form.Label>
-            <Form.Control
-              as="select"
-              value={this.state.levelDiscover}
-              onChange={this.handleChangeLevelDiscover}
-            >
-              <option value="-1" disabled>
-                Select a option
-              </option>
-              <option value="0">Strongly disagree</option>
-              <option value="1">Disagree</option>
-              <option value="2">I don't know</option>
-              <option value="3">Strongly agree</option>
-              <option value="4">Agree</option>
-            </Form.Control>
-          </Form.Group>
-          <Form.Group controlId="levelFit">
-            <Form.Label>
-              The explanation levels alllows me to fit the explanations with my
-              interests:
-            </Form.Label>
-            <Form.Control
-              as="select"
-              value={this.state.levelFit}
-              onChange={this.handleChangeLevelFit}
-            >
-              <option value="-1" disabled>
-                Select a option
-              </option>
-              <option value="0">Strongly disagree</option>
-              <option value="1">Disagree</option>
-              <option value="2">I don't know</option>
-              <option value="3">Strongly agree</option>
-              <option value="4">Agree</option>
-            </Form.Control>
-          </Form.Group>
+          <Option
+            controlId="liked"
+            label="I liked this recommendation:"
+            value={this.state.liked}
+            onChange={this.handleChangeLiked}
+          />
+          <Option
+            controlId="understood"
+            label="I understood why this recommendation was made to me:"
+            value={this.state.understood}
+            onChange={this.handleChangeUnderstood}
+          />
+          <Option
+            controlId="interest"
+            label="The explanation increased my interest on this recommendation:"
+            value={this.state.interest}
+            onChange={this.handleChangeInterest}
+          />
+          <Option
+            controlId="discover"
+            label="The explanation helped me discover new information about this
+            movie:"
+            value={this.state.discover}
+            onChange={this.handleChangeDiscover}
+          />
+          <Option
+            controlId="levelDiscover"
+            label="The explanation levels assist me to discover new informations
+            about the recommended movie:"
+            value={this.state.levelDiscover}
+            onChange={this.handleChangeLevelDiscover}
+          />
+          <Option
+            controlId="levelFit"
+            label="The explanation levels alllows me to fit the explanations with my
+            interests:"
+            value={this.state.levelFit}
+            onChange={this.handleChangeLevelFit}
+          />
           <Button variant="primary" type="submit" className="float-right">
             Next
           </Button>
