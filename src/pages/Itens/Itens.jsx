@@ -72,12 +72,13 @@ class Itens extends Component {
     );
   };
 
-  onSearch = (title) => {
+  onSearch = (title, year) => {
     this.props.loader(
-      getItensByTitle(title).then((response) => {
+      getItensByTitle(title, year).then((response) => {
         let profileItens = this.state.profileItens;
         let profileItensKeys = Object.keys(this.state.profileItens).map(Number);
         let itens = response.data;
+        console.log(itens)
         itens.forEach((element) => {
           if (profileItensKeys.includes(element.movie_id))
             element.rate = profileItens[element.movie_id].rate;

@@ -2,9 +2,14 @@ import React, { Component } from "react";
 import { Button, Form, FormControl, InputGroup } from "react-bootstrap";
 
 class SearchBar extends Component {
-  state = { title: "", error: false };
+  state = { title: "", year: "", error: false };
 
   handleChangeTitle = (event) => this.setState({ title: event.target.value });
+
+  handleChangeYear = (event) => {
+    this.setState({ year: event.target.value });
+    this.props.onSearch(this.state.title, event.target.value);
+  };
 
   onKeyPressSearch = (event) => {
     if (event.key === "Enter") this.props.onSearch(this.state.title);
@@ -24,7 +29,7 @@ class SearchBar extends Component {
   updateValid = () => {
     let error = this.state.error;
 
-    error = error && this.state.title.length > 2 ? !error : true;
+    error = this.state.title.length > 2 ? false : true;
 
     this.setState({ error });
   };
@@ -41,6 +46,24 @@ class SearchBar extends Component {
           isInvalid={this.state.error}
           onBlur={this.updateValid}
         />
+        <select
+          className="form-control"
+          onChange={(e) => this.handleChangeYear(e)}
+        >
+          <option value="">All years</option>
+          <option value="2000">2000</option>
+          <option value="2001">2001</option>
+          <option value="2002">2002</option>
+          <option value="2003">2003</option>
+          <option value="2004">2004</option>
+          <option value="2005">2005</option>
+          <option value="2006">2006</option>
+          <option value="2007">2007</option>
+          <option value="2008">2008</option>
+          <option value="2009">2009</option>
+          <option value="2010">2010</option>
+          <option value="2011">2011</option>
+        </select>
         <Button id="search" onClick={this.onSearch}>
           Search
         </Button>
