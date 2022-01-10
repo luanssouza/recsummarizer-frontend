@@ -3,7 +3,7 @@ import "./App.css";
 import React, { Component } from "react";
 
 // Importing React Router
-import { Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 
 // Importing Layout
 import Header from "./layout/Header/Header";
@@ -21,6 +21,7 @@ import Error from "./pages/Error/Error";
 
 // Importing Components
 import Loader from "./components/Loading/Loader";
+import { connect } from "react-redux";
 
 class App extends Component {
   state = { loading: true };
@@ -33,6 +34,13 @@ class App extends Component {
   loaderComponent = (Page) => {
     return (props) => <Page {...props} loader={this.loaderFunction} />;
   };
+
+  isUser = (Component, routeProps) =>
+    this.props.user.user ? (
+      <Component {...routeProps} loader={this.loaderFunction} />
+    ) : (
+      <Redirect to="/" />
+    );
 
   render() {
     return (
@@ -47,24 +55,28 @@ class App extends Component {
               path="/demographic"
               render={this.loaderComponent(Demographic)}
             />
-            <Route exact path="/itens" render={this.loaderComponent(Itens)} />
+            <Route
+              exact
+              path="/itens"
+              render={(routeProps) => this.isUser(Itens, routeProps)}
+            />
             <Route
               exact
               path="/recommendation"
-              render={this.loaderComponent(Recommendation)}
+              render={(routeProps) => this.isUser(Recommendation, routeProps)}
             />
             <Route
               exact
               path="/itemTries"
-              render={this.loaderComponent(ItemTries)}
+              render={(routeProps) => this.isUser(ItemTries, routeProps)}
             />
             <Route
               exact
               path="/explanation"
-              render={this.loaderComponent(Explanation)}
+              render={(routeProps) => this.isUser(Explanation, routeProps)}
             />
             <Route exact path="/final" component={Final} />
-            <Route component={Error}/>
+            <Route component={Error} />
           </Switch>
         </main>
         <br />
@@ -75,4 +87,6 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => ({ user: state.user });
+
+export default connect(mapStateToProps)(App);
