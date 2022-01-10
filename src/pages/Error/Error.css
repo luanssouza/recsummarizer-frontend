@@ -1,0 +1,12 @@
+.error {
+    padding-top: 30px;
+    font-size: large;
+    font-size: 5vw;
+    color: #fd4a4a;
+}
+
+.error-span {
+    font-size: large;
+    font-size: 3vw;
+    color: #666666;
+}

@@ -17,6 +17,7 @@ import Recommendation from "./pages/Recommendation/Recommendation";
 import ItemTries from "./pages/ItemTries/ItemTries";
 import Explanation from "./pages/Explanation/Explanation";
 import Final from "./pages/Final/Final";
+import Error from "./pages/Error/Error";
 
 // Importing Components
 import Loader from "./components/Loading/Loader";
@@ -63,6 +64,7 @@ class App extends Component {
               render={this.loaderComponent(Explanation)}
             />
             <Route exact path="/final" component={Final} />
+            <Route component={Error}/>
           </Switch>
         </main>
         <br />
