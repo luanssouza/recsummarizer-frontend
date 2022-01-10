@@ -16,6 +16,9 @@ import {
   postCompare,
 } from "../../services/recommender";
 
+// Components
+import Option from "../../components/Option/Option";
+
 class Explanation extends Component {
   constructor(props) {
     super(props);
@@ -25,14 +28,24 @@ class Explanation extends Component {
     this.state = {
       item: rec,
       details: 10,
-      understood: "-1",
-      convincing: "-1",
-      discover: "-1",
-      trust: "-1",
+      understood: 3,
+      convincing: 3,
+      discover: 3,
+      trust: 3,
     };
 
     this.getExplanations();
   }
+
+  labels = [
+    "Totally explanation A",
+    "More explanation A",
+    "I don't know",
+    "More explanation B",
+    "Totally explanation B",
+  ];
+
+  ticks = ["Explanation A", null, "Neutral", null, "Explanation B"];
 
   componentDidMount() {
     window.scrollTo(0, 0);
@@ -152,71 +165,40 @@ class Explanation extends Component {
             Select the explanation that better fit with the following
             definitions:
           </h3> */}
-          <Form.Group controlId="understood">
-            <Form.Label>
-              I understood why this movie was recommended to me:
-            </Form.Label>
-            <Form.Control
-              as="select"
-              value={this.state.understood}
-              onChange={this.handleChangeUnderstood}
-            >
-              <option value="-1" disabled>
-                Select a option
-              </option>
-              <option value="0">Explanation A</option>
-              <option value="1">Explanation B</option>
-            </Form.Control>
-          </Form.Group>
-          <Form.Group controlId="convincing">
-            <Form.Label>
-              The explanation made the recommendation more convinving:
-            </Form.Label>
-            <Form.Control
-              as="select"
-              value={this.state.convincing}
-              onChange={this.handleChangeConvincing}
-            >
-              <option value="-1" disabled>
-                Select a option
-              </option>
-              <option value="0">Explanation A</option>
-              <option value="1">Explanation B</option>
-            </Form.Control>
-          </Form.Group>
-          <Form.Group controlId="discover">
-            <Form.Label>
-              The explanation helped me discover new information about this
-              movie:
-            </Form.Label>
-            <Form.Control
-              as="select"
-              value={this.state.discover}
-              onChange={this.handleChangeDiscover}
-            >
-              <option value="-1" disabled>
-                Select a option
-              </option>
-              <option value="0">Explanation A</option>
-              <option value="1">Explanation B</option>
-            </Form.Control>
-          </Form.Group>
-          <Form.Group controlId="trust">
-            <Form.Label>
-              The explanation increased my trust in the recommender system:
-            </Form.Label>
-            <Form.Control
-              as="select"
-              value={this.state.trust}
-              onChange={this.handleChangeTrust}
-            >
-              <option value="-1" disabled>
-                Select a option
-              </option>
-              <option value="0">Explanation A</option>
-              <option value="1">Explanation B</option>
-            </Form.Control>
-          </Form.Group>
+
+          <Option
+            controlId="liked"
+            label="I understood why this movie was recommended to me:"
+            value={this.state.understood}
+            onChange={this.handleChangeUnderstood}
+            labels={this.labels}
+            ticks={this.ticks}
+          />
+          <Option
+            controlId="convincing"
+            label="The explanation made the recommendation more convinving:"
+            value={this.state.convincing}
+            onChange={this.handleChangeConvincing}
+            labels={this.labels}
+            ticks={this.ticks}
+          />
+          <Option
+            controlId="discover"
+            label="The explanation helped me discover new information about this
+            movie:"
+            value={this.state.discover}
+            onChange={this.handleChangeDiscover}
+            labels={this.labels}
+            ticks={this.ticks}
+          />
+          <Option
+            controlId="trust"
+            label="The explanation increased my trust in the recommender system:"
+            value={this.state.trust}
+            onChange={this.handleChangeTrust}
+            labels={this.labels}
+            ticks={this.ticks}
+          />
           <Button variant="primary" type="submit" className="float-right">
             Next
           </Button>

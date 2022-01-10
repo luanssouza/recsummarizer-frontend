@@ -17,10 +17,10 @@ function Option(props) {
         <Form.Label>{props.label}</Form.Label>
       </Col>
       <Col md="8">
-        <div class="ticks">
+        <div className="ticks">
           {props.ticks
             ? props.ticks.map((item, index) => (
-                <span class="tick" key={index}>
+                <span className="tick text-center" key={index}>
                   {item}
                 </span>
               ))
