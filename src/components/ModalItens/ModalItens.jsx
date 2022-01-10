@@ -1,4 +1,6 @@
 import React from "react";
+
+// Bootstrap imports
 import { Button, Col, Image, ListGroup, Modal, Row } from "react-bootstrap";
 
 const ModalItens = (props) => {

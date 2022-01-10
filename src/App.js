@@ -1,5 +1,10 @@
 import "./App.css";
 
+import React, { Component } from "react";
+
+// Importing React Router
+import { Route, Switch } from "react-router-dom";
+
 // Importing Layout
 import Header from "./layout/Header/Header";
 import Footer from "./layout/Footer/Footer";
@@ -9,15 +14,12 @@ import Home from "./pages/Home/Home";
 import Demographic from "./pages/Domagraphic/Demographic";
 import Itens from "./pages/Itens/Itens";
 import Recommendation from "./pages/Recommendation/Recommendation";
+import ItemTries from "./pages/ItemTries/ItemTries";
 import Explanation from "./pages/Explanation/Explanation";
 import Final from "./pages/Final/Final";
 
-// Importing React Router
-import { Route, Switch } from "react-router-dom";
+// Importing Components
 import Loader from "./components/Loading/Loader";
-
-import React, { Component } from "react";
-import ItemTries from "./pages/ItemTries/ItemTries";
 
 class App extends Component {
   state = { loading: true };

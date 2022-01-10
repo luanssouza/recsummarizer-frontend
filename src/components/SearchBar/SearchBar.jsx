@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+
+// Bootstrap imports
 import { Button, Form, FormControl, InputGroup } from "react-bootstrap";
 
 class SearchBar extends Component {

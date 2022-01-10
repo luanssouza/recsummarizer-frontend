@@ -2,10 +2,12 @@ import React, { Component } from "react";
 
 // Bootstrap imports
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
-import Option from "../../components/Option/Option";
 
 // Redux import
 import { connect } from "react-redux";
+
+// Components
+import Option from "../../components/Option/Option";
 
 class ItemTries extends Component {
   constructor(props) {

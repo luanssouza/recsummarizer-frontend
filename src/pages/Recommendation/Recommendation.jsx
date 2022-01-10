@@ -8,10 +8,12 @@ import RangeSlider from "react-bootstrap-range-slider";
 
 // Redux import
 import { connect } from "react-redux";
-import Option from "../../components/Option/Option";
 
 // Service import
 import { getExplanation, postEvaluation } from "../../services/recommender";
+
+// Components
+import Option from "../../components/Option/Option";
 
 class Recommendation extends Component {
   constructor(props) {
