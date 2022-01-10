@@ -15,7 +15,7 @@ class ItemTries extends Component {
 
     this.state = {
       item: rec,
-      liked: "-1",
+      liked: 3,
     };
   }
 

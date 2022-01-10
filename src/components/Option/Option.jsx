@@ -1,30 +1,48 @@
-import React from 'react';
+import "./Option.css";
+
+import React from "react";
 
 // Bootstrap imports
-import { Form } from 'react-bootstrap';
+import { Col, Form, Row } from "react-bootstrap";
+
+// React Bootstrap Range Slider imports
+import RangeSlider from "react-bootstrap-range-slider";
+
+const tooltipLabel = (index) => {
+  let labels = [
+    "Strongly disagree",
+    "Disagree",
+    "I don't know",
+    "Agree",
+    "Strongly agree",
+  ];
+  return labels[index - 1];
+};
 
 function Option(props) {
-    return (
-        <Form.Group controlId={props.controlId}>
-            <Form.Label>
-              {props.label}
-            </Form.Label>
-            <Form.Control
-              as="select"
-              value={props.value}
-              onChange={props.onChange}
-            >
-              <option value="-1" disabled>
-                Select a option
-              </option>
-              <option value="0">Strongly disagree</option>
-              <option value="1">Disagree</option>
-              <option value="2">I don't know</option>
-              <option value="3">Strongly agree</option>
-              <option value="4">Agree</option>
-            </Form.Control>
-          </Form.Group>
-    );
+  return (
+    <Form.Group controlId={props.controlId} as={Row}>
+      <Col md="4" className="d-flex align-items-center">
+        <Form.Label>{props.label}</Form.Label>
+      </Col>
+      <Col md="8">
+      <div class="ticks">
+          <span class="tick">Disagree</span>
+          <span class="tick"></span>
+          <span class="tick">Neutral</span>
+          <span class="tick"></span>
+          <span class="tick">Agree</span>
+        </div>
+        <RangeSlider
+          value={props.value}
+          min={1}
+          max={5}
+          tooltipLabel={tooltipLabel}
+          onChange={props.onChange}
+        />
+      </Col>
+    </Form.Group>
+  );
 }
 
 export default Option;

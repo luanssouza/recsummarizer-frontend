@@ -1,6 +1,8 @@
 import "./FloatButton.css";
 
 import React from "react";
+
+// Bootstrap imports
 import { Button } from "react-bootstrap";
 
 const vertPosition = (num) => {

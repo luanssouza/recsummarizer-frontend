@@ -1,0 +1,15 @@
+.ticks {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tick {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 2px;
+  padding-top: 15px;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  font-size: 0.8rem;
+}

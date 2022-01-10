@@ -22,12 +22,12 @@ class Recommendation extends Component {
     this.state = {
       item: rec,
       details: 10,
-      liked: "-1",
-      understood: "-1",
-      interest: "-1",
-      discover: "-1",
-      levelDiscover: "-1",
-      levelFit: "-1",
+      liked: 3,
+      understood: 3,
+      interest: 3,
+      discover: 3,
+      levelDiscover: 3,
+      levelFit: 3,
     };
 
     this.changeExplanation();
