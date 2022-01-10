@@ -21,6 +21,16 @@ class ItemTries extends Component {
     };
   }
 
+  labels = [
+    "Strongly disagree",
+    "Disagree",
+    "I don't know",
+    "Agree",
+    "Strongly agree",
+  ];
+
+  ticks = ["Disagree", null, "Neutral", null, "Agree"];
+
   componentDidMount() {
     window.scrollTo(0, 0);
   }
@@ -58,6 +68,8 @@ class ItemTries extends Component {
             label="I liked this recommendation:"
             value={this.state.liked}
             onChange={this.handleChangeLiked}
+            labels={this.labels}
+            ticks={this.ticks}
           />
           <Button variant="primary" type="submit" className="float-right">
             Next

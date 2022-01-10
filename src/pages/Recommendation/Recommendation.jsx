@@ -35,6 +35,16 @@ class Recommendation extends Component {
     this.changeExplanation();
   }
 
+  labels = [
+    "Strongly disagree",
+    "Disagree",
+    "I don't know",
+    "Agree",
+    "Strongly agree",
+  ];
+
+  ticks = ["Disagree", null, "Neutral", null, "Agree"];
+
   componentDidMount() {
     window.scrollTo(0, 0);
   }
@@ -133,18 +143,24 @@ class Recommendation extends Component {
             label="I liked this recommendation:"
             value={this.state.liked}
             onChange={this.handleChangeLiked}
+            labels={this.labels}
+            ticks={this.ticks}
           />
           <Option
             controlId="understood"
             label="I understood why this recommendation was made to me:"
             value={this.state.understood}
             onChange={this.handleChangeUnderstood}
+            labels={this.labels}
+            ticks={this.ticks}
           />
           <Option
             controlId="interest"
             label="The explanation increased my interest on this recommendation:"
             value={this.state.interest}
             onChange={this.handleChangeInterest}
+            labels={this.labels}
+            ticks={this.ticks}
           />
           <Option
             controlId="discover"
@@ -152,6 +168,8 @@ class Recommendation extends Component {
             movie:"
             value={this.state.discover}
             onChange={this.handleChangeDiscover}
+            labels={this.labels}
+            ticks={this.ticks}
           />
           <Option
             controlId="levelDiscover"
@@ -159,6 +177,8 @@ class Recommendation extends Component {
             about the recommended movie:"
             value={this.state.levelDiscover}
             onChange={this.handleChangeLevelDiscover}
+            labels={this.labels}
+            ticks={this.ticks}
           />
           <Option
             controlId="levelFit"
@@ -166,6 +186,8 @@ class Recommendation extends Component {
             interests:"
             value={this.state.levelFit}
             onChange={this.handleChangeLevelFit}
+            labels={this.labels}
+            ticks={this.ticks}
           />
           <Button variant="primary" type="submit" className="float-right">
             Next

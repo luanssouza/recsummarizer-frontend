@@ -8,16 +8,7 @@ import { Col, Form, Row } from "react-bootstrap";
 // React Bootstrap Range Slider imports
 import RangeSlider from "react-bootstrap-range-slider";
 
-const tooltipLabel = (index) => {
-  let labels = [
-    "Strongly disagree",
-    "Disagree",
-    "I don't know",
-    "Agree",
-    "Strongly agree",
-  ];
-  return labels[index - 1];
-};
+const tooltipLabel = (index, labels) => (labels ? labels[index - 1] : index);
 
 function Option(props) {
   return (
@@ -26,18 +17,20 @@ function Option(props) {
         <Form.Label>{props.label}</Form.Label>
       </Col>
       <Col md="8">
-      <div class="ticks">
-          <span class="tick">Disagree</span>
-          <span class="tick"></span>
-          <span class="tick">Neutral</span>
-          <span class="tick"></span>
-          <span class="tick">Agree</span>
+        <div class="ticks">
+          {props.ticks
+            ? props.ticks.map((item, index) => (
+                <span class="tick" key={index}>
+                  {item}
+                </span>
+              ))
+            : null}
         </div>
         <RangeSlider
           value={props.value}
           min={1}
           max={5}
-          tooltipLabel={tooltipLabel}
+          tooltipLabel={() => tooltipLabel(props.value, props.labels)}
           onChange={props.onChange}
         />
       </Col>
