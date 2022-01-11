@@ -27,8 +27,8 @@ class Recommendation extends Component {
       liked: 3,
       understood: 3,
       interest: 3,
-      discover: 3,
-      levelDiscover: 3,
+      useful: 3,
+      preferences: 3,
       levelFit: 3,
     };
 
@@ -78,11 +78,10 @@ class Recommendation extends Component {
   handleChangeInterest = (event) =>
     this.setState({ interest: event.target.value });
 
-  handleChangeDiscover = (event) =>
-    this.setState({ discover: event.target.value });
+  handleChangeUseful = (event) => this.setState({ useful: event.target.value });
 
-  handleChangeLevelDiscover = (event) =>
-    this.setState({ levelDiscover: event.target.value });
+  handleChangePreferences = (event) =>
+    this.setState({ preferences: event.target.value });
 
   handleChangeLevelFit = (event) =>
     this.setState({ levelFit: event.target.value });
@@ -97,8 +96,8 @@ class Recommendation extends Component {
         liked: this.state.liked,
         understood: this.state.understood,
         interest: this.state.interest,
-        discover: this.state.discover,
-        levelDiscover: this.state.levelDiscover,
+        useful: this.state.useful,
+        preferences: this.state.preferences,
         levelFit: this.state.levelFit,
       },
     };
@@ -155,6 +154,14 @@ class Recommendation extends Component {
             ticks={this.ticks}
           />
           <Option
+            controlId="useful"
+            label="This explanation is useful for my choice:"
+            value={this.state.useful}
+            onChange={this.handleChangeUseful}
+            labels={this.labels}
+            ticks={this.ticks}
+          />
+          <Option
             controlId="interest"
             label="The explanation increased my interest on this recommendation:"
             value={this.state.interest}
@@ -163,26 +170,16 @@ class Recommendation extends Component {
             ticks={this.ticks}
           />
           <Option
-            controlId="discover"
-            label="The explanation helped me discover new information about this
-            movie:"
-            value={this.state.discover}
-            onChange={this.handleChangeDiscover}
-            labels={this.labels}
-            ticks={this.ticks}
-          />
-          <Option
-            controlId="levelDiscover"
-            label="The explanation levels assist me to discover new informations
-            about the recommended movie:"
-            value={this.state.levelDiscover}
-            onChange={this.handleChangeLevelDiscover}
+            controlId="preferences"
+            label="The explanation fits with my preferences:"
+            value={this.state.preferences}
+            onChange={this.handleChangePreferences}
             labels={this.labels}
             ticks={this.ticks}
           />
           <Option
             controlId="levelFit"
-            label="The explanation levels alllows me to fit the explanations with my
+            label="The explanation levels allows me to fit the explanations with my
             interests:"
             value={this.state.levelFit}
             onChange={this.handleChangeLevelFit}

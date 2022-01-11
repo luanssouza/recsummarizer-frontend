@@ -29,9 +29,9 @@ class Explanation extends Component {
       item: rec,
       details: 10,
       understood: 3,
-      convincing: 3,
-      discover: 3,
-      trust: 3,
+      useful: 3,
+      interest: 3,
+      preferences: 3,
     };
 
     this.getExplanations();
@@ -95,13 +95,13 @@ class Explanation extends Component {
   handleChangeUnderstood = (event) =>
     this.setState({ understood: event.target.value });
 
-  handleChangeConvincing = (event) =>
-    this.setState({ convincing: event.target.value });
+  handleChangeUseful = (event) => this.setState({ useful: event.target.value });
 
-  handleChangeDiscover = (event) =>
-    this.setState({ discover: event.target.value });
+  handleChangeInterest = (event) =>
+    this.setState({ interest: event.target.value });
 
-  handleChangeTrust = (event) => this.setState({ trust: event.target.value });
+  handleChangePreferences = (event) =>
+    this.setState({ preferences: event.target.value });
 
   handleSubmit = (event) => {
     event.preventDefault();
@@ -111,9 +111,9 @@ class Explanation extends Component {
         user_id: this.props.user.user.user_id,
         movie_id: this.state.item.movie_id,
         understood: this.state.understood,
-        convincing: this.state.convincing,
-        discover: this.state.discover,
-        trust: this.state.trust,
+        useful: this.state.useful,
+        interest: this.state.interest,
+        preferences: this.state.preferences,
       },
     };
 
@@ -175,27 +175,26 @@ class Explanation extends Component {
             ticks={this.ticks}
           />
           <Option
-            controlId="convincing"
-            label="The explanation made the recommendation more convinving:"
-            value={this.state.convincing}
-            onChange={this.handleChangeConvincing}
+            controlId="useful"
+            label="This explanation is useful for my choice:"
+            value={this.state.useful}
+            onChange={this.handleChangeUseful}
             labels={this.labels}
             ticks={this.ticks}
           />
           <Option
-            controlId="discover"
-            label="The explanation helped me discover new information about this
-            movie:"
-            value={this.state.discover}
-            onChange={this.handleChangeDiscover}
+            controlId="interest"
+            label="The explanation increased my interest on this recommendation:"
+            value={this.state.interest}
+            onChange={this.handleChangeInterest}
             labels={this.labels}
             ticks={this.ticks}
           />
           <Option
-            controlId="trust"
-            label="The explanation increased my trust in the recommender system:"
-            value={this.state.trust}
-            onChange={this.handleChangeTrust}
+            controlId="preferences"
+            label="The explanation fits with my preferences:"
+            value={this.state.preferences}
+            onChange={this.handleChangePreferences}
             labels={this.labels}
             ticks={this.ticks}
           />
