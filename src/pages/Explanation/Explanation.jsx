@@ -151,7 +151,7 @@ class Explanation extends Component {
         <Form onSubmit={this.handleSubmit}>
           <hr />
           <Form.Group controlId="details">
-            <Form.Label>Level Of Deatils:</Form.Label>
+            <Form.Label>Level Of Details:</Form.Label>
             <RangeSlider
               value={this.state.details}
               onChange={this.handleChangeDetails}

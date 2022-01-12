@@ -6,7 +6,7 @@ function Final(props) {
   return (
     <div>
       <h1 className="d-flex justify-content-center final">
-        End of expirement!
+        End of experiment!
       </h1>
       <p className="d-flex justify-content-center final">
         Thank you for your participation!

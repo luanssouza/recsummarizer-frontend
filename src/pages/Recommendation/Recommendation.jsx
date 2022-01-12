@@ -127,7 +127,7 @@ class Recommendation extends Component {
           <hr />
           {/* <h3>Questionnaire</h3> */}
           <Form.Group controlId="details">
-            <Form.Label>Level of deatils of the explanation:</Form.Label>
+            <Form.Label>Level of details of the explanation:</Form.Label>
             <RangeSlider
               value={this.state.details}
               onChange={this.handleChangeDetails}
