@@ -8,7 +8,7 @@ import Rating from "react-rating";
 
 const CardItem = (props) => {
   return (
-    <Card className="text-center">
+    <Card className="text-center h-100">
       <Card.Header as="h5">{props.item.title}</Card.Header>
       <Card.Body>
         <Card.Img variant="top" src={props.item.poster} />

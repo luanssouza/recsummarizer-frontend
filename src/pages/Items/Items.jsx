@@ -79,7 +79,7 @@ class Items extends Component {
         let profileItems = this.state.profileItems;
         let profileItemsKeys = Object.keys(this.state.profileItems).map(Number);
         let items = response.data;
-        
+
         items.forEach((element) => {
           if (profileItemsKeys.includes(element.movie_id))
             element.rate = profileItems[element.movie_id].rate;
@@ -141,13 +141,13 @@ class Items extends Component {
         <Row>
           {this.state.items.map((item, index) => {
             return (
-              <Col md={4} key={index}>
-                <CardItem
-                  item={item}
-                  index={index}
-                  onRate={this.onRate}
-                  value={this.state.value}
-                />
+              <Col md={4} key={index} className="mb-3">
+                  <CardItem
+                    item={item}
+                    index={index}
+                    onRate={this.onRate}
+                    value={this.state.value}
+                  />
               </Col>
             );
           })}
