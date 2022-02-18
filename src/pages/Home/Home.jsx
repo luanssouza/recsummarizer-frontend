@@ -65,7 +65,7 @@ class Home extends Component {
 
         <p>
           A abordagem será feita de maneira online, por meio de redes sociais e
-          e-mail, e os experimentos serão feitos através deste site. O tempo
+          e-mail, e os experimentos serão feitos por meio deste site. O tempo
           estimado para o experimento é de aproximadamente 15 (quinze) minutos.
           A coleta de dados será feita em inglês, na seguinte ordem:
         </p>
@@ -82,6 +82,9 @@ class Home extends Component {
           <li>
             Apresentação da recomendação junto a uma explicação e a um
             questionário para avaliação;
+          </li>
+          <li>
+            Apresentação da recomendação junto a seu respectivo trailer;
           </li>
           <li>
             Apresentação da recomendação junto a duas explicações e um
@@ -148,7 +151,7 @@ class Home extends Component {
             target="_blank"
             rel="noreferrer"
           >
-            Clique aqui para baixar uma cópia deste TCLE.
+            Clique aqui para baixar uma cópia deste TCLE
           </a>
         </p>
 
