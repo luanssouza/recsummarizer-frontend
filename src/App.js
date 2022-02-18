@@ -12,7 +12,7 @@ import Footer from "./layout/Footer/Footer";
 // Importing Pages
 import Home from "./pages/Home/Home";
 import Demographic from "./pages/Domagraphic/Demographic";
-import Itens from "./pages/Itens/Itens";
+import items from "./pages/Items/Items";
 import Recommendation from "./pages/Recommendation/Recommendation";
 import ItemTries from "./pages/ItemTries/ItemTries";
 import Explanation from "./pages/Explanation/Explanation";
@@ -57,8 +57,8 @@ class App extends Component {
             />
             <Route
               exact
-              path="/itens"
-              render={(routeProps) => this.isUser(Itens, routeProps)}
+              path="/items"
+              render={(routeProps) => this.isUser(items, routeProps)}
             />
             <Route
               exact

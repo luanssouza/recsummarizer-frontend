@@ -1,12 +1,12 @@
 import { createStore, combineReducers } from "redux";
 
 import recommendationsReducer from "./reducers/recommendation/recommendation";
-import itensReducer from "./reducers/itens/itens";
+import itemsReducer from "./reducers/items/items";
 import userReducer from "./reducers/user/user";
 
 const reducers = combineReducers({
   recommendations: recommendationsReducer,
-  itens: itensReducer,
+  items: itemsReducer,
   user: userReducer
 });
 

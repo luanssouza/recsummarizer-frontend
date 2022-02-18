@@ -82,7 +82,7 @@ class ItemTries extends Component {
 
 const mapStateToProps = (state) => ({
   recommendations: state.recommendations,
-  itens: state.itens,
+  items: state.items,
   user: state.user,
 });
 

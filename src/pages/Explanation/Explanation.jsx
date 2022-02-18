@@ -55,7 +55,7 @@ class Explanation extends Component {
     let requestBody = {
       movie_id: this.state.item.movie_id,
       n_clusters: this.state.details,
-      rates: this.props.itens.itens,
+      rates: this.props.items.items,
     };
 
     this.props.loader(
@@ -76,7 +76,7 @@ class Explanation extends Component {
     let requestBody = {
       movie_id: this.state.item.movie_id,
       n_clusters: this.state.details,
-      rates: this.props.itens.itens,
+      rates: this.props.items.items,
     };
 
     this.props.loader(
@@ -209,7 +209,7 @@ class Explanation extends Component {
 
 const mapStateToProps = (state) => ({
   recommendations: state.recommendations,
-  itens: state.itens,
+  items: state.items,
   user: state.user,
 });
 

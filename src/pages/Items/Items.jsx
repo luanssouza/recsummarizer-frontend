@@ -5,28 +5,28 @@ import { Col, Container, Row } from "react-bootstrap";
 
 // Services
 import {
-  getItens,
-  getItensByTitle,
+  getItems,
+  getItemsByTitle,
   getRecommendation,
 } from "../../services/recommender";
 
 // Redux
 import { connect } from "react-redux";
 import {
-  ADD_ITENS,
+  ADD_ITEMS,
   ADD_RECOMMENDATION,
 } from "../../store/actions/actionsConst";
 
 // Components
 import SearchBar from "../../components/SearchBar/SearchBar";
 import FloatButton from "../../components/FloatButton/FloatButton";
-import ModalItens from "../../components/ModalItens/ModalItens";
+import ModalItems from "../../components/ModalItems/ModalItems";
 import CardItem from "../../components/CardItem/CardItem";
 
-class Itens extends Component {
+class Items extends Component {
   state = {
-    itens: [],
-    profileItens: {},
+    items: [],
+    profileItems: {},
     modalShow: false,
   };
 
@@ -37,8 +37,8 @@ class Itens extends Component {
 
   onInit = () => {
     this.props.loader(
-      getItens().then((response) => {
-        this.setState({ itens: response.data });
+      getItems().then((response) => {
+        this.setState({ items: response.data });
       })
     );
   };
@@ -48,23 +48,23 @@ class Itens extends Component {
   }
 
   handleNext = () => {
-    let profileItens = this.state.profileItens;
+    let profileItems = this.state.profileItems;
 
-    let itens = [];
+    let items = [];
 
-    for (let [key, value] of Object.entries(profileItens)) {
-      itens.push({ movie_id: key, rating: value.rate });
+    for (let [key, value] of Object.entries(profileItems)) {
+      items.push({ movie_id: key, rating: value.rate });
     }
 
     let requestBody = {
       user_id: this.props.user.user.user_id,
-      rates: itens,
+      rates: items,
     };
 
     this.props.loader(
       getRecommendation(requestBody).then((response) => {
         let recommendations = response.data;
-        this.props.onSubmitItens(itens);
+        this.props.onSubmitItems(items);
         this.props.onSubmitRecommendation(recommendations);
 
         this.props.history.push("/recommendation");
@@ -74,53 +74,53 @@ class Itens extends Component {
 
   onSearch = (title, year) => {
     this.props.loader(
-      getItensByTitle(title, year).then((response) => {
-        let profileItens = this.state.profileItens;
-        let profileItensKeys = Object.keys(this.state.profileItens).map(Number);
-        let itens = response.data;
-        console.log(itens)
-        itens.forEach((element) => {
-          if (profileItensKeys.includes(element.movie_id))
-            element.rate = profileItens[element.movie_id].rate;
+      getItemsByTitle(title, year).then((response) => {
+        let profileItems = this.state.profileItems;
+        let profileItemsKeys = Object.keys(this.state.profileItems).map(Number);
+        let items = response.data;
+        console.log(items)
+        items.forEach((element) => {
+          if (profileItemsKeys.includes(element.movie_id))
+            element.rate = profileItems[element.movie_id].rate;
           else element.rate = 0;
         });
-        this.setState({ itens: itens });
+        this.setState({ items: items });
       })
     );
   };
 
   onRate = (id, rate) => {
-    let itens = this.state.itens;
+    let items = this.state.items;
 
-    itens[id].rate = rate;
-    let item = itens[id];
+    items[id].rate = rate;
+    let item = items[id];
 
-    let profileItens = this.state.profileItens;
-    profileItens[item.movie_id] = { ...item, ...{ rate: rate } };
+    let profileItems = this.state.profileItems;
+    profileItems[item.movie_id] = { ...item, ...{ rate: rate } };
 
-    this.setState({ profileItens: profileItens, itens: itens });
+    this.setState({ profileItems: profileItems, items: items });
   };
 
   onDelete = (key) => {
-    let profileItens = this.state.profileItens;
-    delete profileItens[key];
+    let profileItems = this.state.profileItems;
+    delete profileItems[key];
 
-    let profileItensKeys = Object.keys(this.state.profileItens).map(Number);
-    let itens = this.state.itens;
-    itens.forEach((element) => {
-      if (profileItensKeys.includes(element.movie_id))
-        element.rate = profileItens[element.movie_id].rate;
+    let profileItemsKeys = Object.keys(this.state.profileItems).map(Number);
+    let items = this.state.items;
+    items.forEach((element) => {
+      if (profileItemsKeys.includes(element.movie_id))
+        element.rate = profileItems[element.movie_id].rate;
       else element.rate = 0;
     });
 
-    this.setState({ profileItens: profileItens, itens: itens });
+    this.setState({ profileItems: profileItems, items: items });
   };
 
   onModalChange = () => {
     this.setState({ modalShow: !this.state.modalShow });
   };
 
-  profileItensLen = () => Object.keys(this.state.profileItens).length;
+  profileItemsLen = () => Object.keys(this.state.profileItems).length;
 
   render() {
     return (
@@ -132,13 +132,13 @@ class Itens extends Component {
           <SearchBar onSearch={this.onSearch} />
         </Row>
 
-        {this.state.itens.length === 0 && (
+        {this.state.items.length === 0 && (
           <h4 className="d-flex justify-content-center">
             Unfortunatly, we can't find movies.
           </h4>
         )}
         <Row>
-          {this.state.itens.map((item, index) => {
+          {this.state.items.map((item, index) => {
             return (
               <Col md={4} key={index}>
                 <CardItem
@@ -155,18 +155,18 @@ class Itens extends Component {
           buttonFunction={this.handleNext}
           title="Next"
           num={1}
-          disabled={this.profileItensLen() < 10}
+          disabled={this.profileItemsLen() < 10}
         />
         <FloatButton
           buttonFunction={this.onModalChange}
-          title={`Itens ${this.profileItensLen()}/10`}
+          title={`items ${this.profileItemsLen()}/10`}
           num={2}
-          disabled={this.profileItensLen() === 0}
+          disabled={this.profileItemsLen() === 0}
         />
-        <ModalItens
+        <ModalItems
           show={this.state.modalShow}
           onHide={this.onModalChange}
-          itens={this.state.profileItens}
+          items={this.state.profileItems}
           onDelete={this.onDelete}
         />
       </Container>
@@ -176,14 +176,14 @@ class Itens extends Component {
 
 const mapStateToProps = (state) => ({
   recommendations: state.recommendations,
-  itens: state.itens,
+  items: state.items,
   user: state.user,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onSubmitRecommendation: (value) =>
     dispatch({ type: ADD_RECOMMENDATION, payload: value }),
-  onSubmitItens: (value) => dispatch({ type: ADD_ITENS, payload: value }),
+  onSubmitItems: (value) => dispatch({ type: ADD_ITEMS, payload: value }),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Itens);
+export default connect(mapStateToProps, mapDispatchToProps)(Items);

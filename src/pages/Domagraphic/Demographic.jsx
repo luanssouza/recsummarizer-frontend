@@ -53,7 +53,7 @@ class Demographic extends Component {
         let user = requestBody.user;
         user.user_id = response.data.user_id;
         this.props.onSubmitUser(user);
-        this.props.history.push("/itens");
+        this.props.history.push("/items");
       })
     );
   };

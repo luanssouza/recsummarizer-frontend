@@ -3,7 +3,7 @@ import React from "react";
 // Bootstrap imports
 import { Button, Col, Image, ListGroup, Modal, Row } from "react-bootstrap";
 
-const ModalItens = (props) => {
+const ModalItems = (props) => {
   return (
     <Modal
       show={props.show}
@@ -13,12 +13,12 @@ const ModalItens = (props) => {
       centered
     >
       <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">Itens</Modal.Title>
+        <Modal.Title id="contained-modal-title-vcenter">Items</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <ListGroup>
-          {Object.keys(props.itens).map((key, index) => {
-            let item = props.itens[key];
+          {Object.keys(props.items).map((key, index) => {
+            let item = props.items[key];
             return (
               <ListGroup.Item key={index}>
                 <Row>
@@ -49,4 +49,4 @@ const ModalItens = (props) => {
   );
 };
 
-export default ModalItens;
+export default ModalItems;
