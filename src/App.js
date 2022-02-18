@@ -22,13 +22,20 @@ import Error from "./pages/Error/Error";
 // Importing Components
 import Loader from "./components/Loading/Loader";
 import { connect } from "react-redux";
+import ModalError from "./components/ModalError/ModalError";
 
 class App extends Component {
-  state = { loading: true };
+  state = { loading: true, modalError: false };
 
   loaderFunction = (fn) => {
     this.setState({ loading: false });
-    fn.finally(() => this.setState({ loading: true }));
+    fn.catch(() => this.onModalErrorChange()).finally(() =>
+      this.setState({ loading: true })
+    );
+  };
+
+  onModalErrorChange = () => {
+    this.setState({ modalError: !this.state.modalError });
   };
 
   loaderComponent = (Page) => {
@@ -82,6 +89,10 @@ class App extends Component {
         <br />
         <br />
         <Footer />
+        <ModalError
+          show={this.state.modalError}
+          onHide={this.onModalErrorChange}
+        />
       </div>
     );
   }

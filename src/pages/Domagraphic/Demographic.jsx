@@ -5,7 +5,6 @@ import { Button, Container, Form } from "react-bootstrap";
 
 // Redux
 import { connect } from "react-redux";
-import ModalError from "../../components/ModalError/ModalError";
 import { postUser } from "../../services/recommender";
 import { ADD_USER } from "../../store/actions/actionsConst";
 
@@ -19,7 +18,6 @@ class Demographic extends Component {
       gender: "-1",
       education: "-1",
       usedRecSys: "-1",
-      modalError: false,
     };
   }
 
@@ -154,11 +152,6 @@ class Demographic extends Component {
             Next
           </Button>
         </Form>
-
-        <ModalError
-          show={this.state.modalError}
-          onHide={this.onModalErrorChange}
-        />
       </Container>
     );
   }
