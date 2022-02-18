@@ -77,6 +77,9 @@ class ItemTries extends Component {
 
         <Form onSubmit={this.handleSubmit}>
           <hr />
+          <h3>
+            Questionnaire (before answer, try the movie trailer):
+          </h3>
           <Option
             controlId="liked"
             label="I liked this recommendation:"

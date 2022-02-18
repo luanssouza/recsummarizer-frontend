@@ -151,7 +151,7 @@ class Explanation extends Component {
         <Form onSubmit={this.handleSubmit}>
           <hr />
           <Form.Group controlId="details">
-            <Form.Label>Level Of Details:</Form.Label>
+            <Form.Label>Level of Details:</Form.Label>
             <RangeSlider
               value={this.state.details}
               onChange={this.handleChangeDetails}
@@ -161,11 +161,9 @@ class Explanation extends Component {
             />
           </Form.Group>
           <hr />
-          {/* <h3>
-            Select the explanation that better fit with the following
-            definitions:
-          </h3> */}
-
+          <h3>
+            Questionnaire (before answer, try different levels of detail):
+          </h3>
           <Option
             controlId="liked"
             label="I understood why this movie was recommended to me:"
