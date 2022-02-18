@@ -14,10 +14,10 @@ class Demographic extends Component {
 
     this.state = {
       id: null,
-      age: 0,
-      gender: 0,
-      education: 0,
-      usedRecSys: 0,
+      age: "-1",
+      gender: "-1",
+      education: "-1",
+      usedRecSys: "-1",
     };
   }
 
@@ -58,6 +58,15 @@ class Demographic extends Component {
     );
   };
 
+  isValid = () => {
+    return (
+      (this.state.age !== "-1") &
+      (this.state.gender !== "-1") &
+      (this.state.education !== "-1") &
+      (this.state.usedRecSys !== "-1")
+    );
+  };
+
   render() {
     return (
       <Container>
@@ -69,6 +78,9 @@ class Demographic extends Component {
               value={this.state.age}
               onChange={this.handleChangeAge}
             >
+              <option value="-1" disabled>
+                Select a option
+              </option>
               <option value="0">0-17</option>
               <option value="1">18-24</option>
               <option value="2">25-50</option>
@@ -82,6 +94,9 @@ class Demographic extends Component {
               value={this.state.gender}
               onChange={this.handleChangeGender}
             >
+              <option value="-1" disabled>
+                Select a option
+              </option>
               <option value="0">Male</option>
               <option value="1">Female</option>
               <option value="2">Others</option>
@@ -94,6 +109,9 @@ class Demographic extends Component {
               value={this.state.education}
               onChange={this.handleChangeEducation}
             >
+              <option value="-1" disabled>
+                Select a option
+              </option>
               <option value="0">High School</option>
               <option value="1">Bachelor's degree</option>
               <option value="2">Master's degree</option>
@@ -111,12 +129,20 @@ class Demographic extends Component {
               value={this.state.usedRecSys}
               onChange={this.handleChangeRecsys}
             >
+              <option value="-1" disabled>
+                Select a option
+              </option>
               <option value="0">No</option>
               <option value="1">Yes</option>
               <option value="2">I don't know</option>
             </Form.Control>
           </Form.Group>
-          <Button variant="primary" type="submit" className="float-right">
+          <Button
+            variant="primary"
+            type="submit"
+            className="float-right"
+            disabled={!this.isValid()}
+          >
             Next
           </Button>
         </Form>
