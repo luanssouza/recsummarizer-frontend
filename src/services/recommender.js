@@ -21,6 +21,9 @@ export const postUser = async (body) => httpClient.post("item/user", body);
 export const postEvaluation = async (body) =>
   httpClient.post("summarizer/evaluation", body);
 
+export const postTries = async (body) =>
+  httpClient.post("summarizer/tries", body);
+
 export const postCompare = async (body) =>
   httpClient.post("summarizer/compare", body);
 

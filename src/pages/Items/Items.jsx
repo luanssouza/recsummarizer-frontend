@@ -38,7 +38,8 @@ class Items extends Component {
   onInit = () => {
     this.props.loader(
       getItems().then((response) => {
-        this.setState({ items: response.data });
+        let items = Array.isArray(response.data) ? response.data : [];
+        this.setState({ items: items });
       })
     );
   };
@@ -78,7 +79,7 @@ class Items extends Component {
         let profileItems = this.state.profileItems;
         let profileItemsKeys = Object.keys(this.state.profileItems).map(Number);
         let items = response.data;
-        console.log(items)
+        
         items.forEach((element) => {
           if (profileItemsKeys.includes(element.movie_id))
             element.rate = profileItems[element.movie_id].rate;

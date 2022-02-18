@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 
 // Components
 import Option from "../../components/Option/Option";
+import { postTries } from "../../services/recommender";
 
 class ItemTries extends Component {
   constructor(props) {
@@ -40,7 +41,20 @@ class ItemTries extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    this.props.history.push("/explanation");
+    
+    let requestBody = {
+      tries: {
+        user_id: this.props.user.user.user_id,
+        movie_id: this.state.item.movie_id,
+        liked: this.state.liked,
+      },
+    };
+
+    this.props.loader(
+      postTries(requestBody).then(() => {
+        this.props.history.push("/explanation");
+      })
+    );
   };
 
   render() {
