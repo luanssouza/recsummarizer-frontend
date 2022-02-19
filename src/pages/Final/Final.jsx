@@ -67,7 +67,7 @@ class Final extends Component {
           <hr />
           <Form.Group className="mb-3">
             <Form.Label>
-              If you have any comment or suggestion, please, let we know::
+              If you have any comments or suggestions, please, let we know:
             </Form.Label>
             <Form.Control
               value={this.state.comment}
