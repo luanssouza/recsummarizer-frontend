@@ -82,7 +82,11 @@ class App extends Component {
               path="/explanation"
               render={(routeProps) => this.isUser(Explanation, routeProps)}
             />
-            <Route exact path="/final" component={Final} />
+            <Route
+              exact
+              path="/final"
+              render={this.loaderComponent(Final)}
+            />
             <Route component={Error} />
           </Switch>
         </main>

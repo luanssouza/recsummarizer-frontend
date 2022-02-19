@@ -27,5 +27,9 @@ export const postTries = async (body) =>
 export const postCompare = async (body) =>
   httpClient.post("summarizer/compare", body);
 
+export const postComment = async (body) =>
+  httpClient.post("summarizer/comment", body);
+
+
 export const getTcleUrl = () =>
   `${process.env.REACT_APP_API_URL}resources/tcle`;
