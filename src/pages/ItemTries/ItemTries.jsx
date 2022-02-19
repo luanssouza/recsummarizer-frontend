@@ -41,7 +41,6 @@ class ItemTries extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    
     let requestBody = {
       tries: {
         user_id: this.props.user.user.user_id,
@@ -63,23 +62,25 @@ class ItemTries extends Component {
         <h1 className="text-center">Recommedation</h1>
         <hr />
         <h2 className="text-center">{this.state.item.title}</h2>
-        <Row>
-          <Col className="text-center">
-            <iframe
-              width="640"
-              height="360"
-              src={"https://www.youtube.com/embed/" + this.state.item.youtubeId}
-              frameBorder="0"
-              title="Trailer"
-            ></iframe>
+        <Row className="justify-content-md-center">
+          <Col className="text-center" md={6}>
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe
+                class="embed-responsive-item"
+                src={
+                  "https://www.youtube.com/embed/" + this.state.item.youtubeId
+                }
+                frameBorder="0"
+                title="Trailer"
+                allowFullScreen
+              ></iframe>
+            </div>
           </Col>
         </Row>
 
         <Form onSubmit={this.handleSubmit}>
           <hr />
-          <h3>
-            Questionnaire (before answer, try the movie trailer):
-          </h3>
+          <h3>Questionnaire (before answer, try the movie trailer):</h3>
           <Option
             controlId="liked"
             label="I liked this recommendation:"
