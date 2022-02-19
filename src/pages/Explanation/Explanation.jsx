@@ -60,8 +60,8 @@ class Explanation extends Component {
 
     this.props.loader(
       Promise.all([
-        getExplanation(requestBody),
         getExplanationBaseline(requestBody),
+        getExplanation(requestBody),
       ]).then((responses) => {
         let rec = this.state.item;
         rec.explanationA = responses[0].data.explanation;
@@ -82,7 +82,7 @@ class Explanation extends Component {
     this.props.loader(
       getExplanation(requestBody).then((response) => {
         let rec = this.state.item;
-        rec.explanationA = response.data.explanation;
+        rec.explanationB = response.data.explanation;
 
         this.setState({ item: rec });
       })
