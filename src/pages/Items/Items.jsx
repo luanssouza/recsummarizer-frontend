@@ -21,6 +21,7 @@ import {
 import SearchBar from "../../components/SearchBar/SearchBar";
 import FloatButton from "../../components/FloatButton/FloatButton";
 import ModalItems from "../../components/ModalItems/ModalItems";
+import ModalMessage from "../../components/ModalMessage/ModalMessage";
 import CardItem from "../../components/CardItem/CardItem";
 
 class Items extends Component {
@@ -28,6 +29,7 @@ class Items extends Component {
     items: [],
     profileItems: {},
     modalShow: false,
+    modalMessageError: false,
   };
 
   constructor(props) {
@@ -63,13 +65,21 @@ class Items extends Component {
     };
 
     this.props.loader(
-      getRecommendation(requestBody).then((response) => {
-        let recommendations = response.data;
-        this.props.onSubmitItems(items);
-        this.props.onSubmitRecommendation(recommendations);
+      getRecommendation(requestBody)
+        .then((response) => {
+          let recommendations = response.data;
+          this.props.onSubmitItems(items);
+          this.props.onSubmitRecommendation(recommendations);
 
-        this.props.history.push("/recommendation");
-      })
+          this.props.history.push("/recommendation");
+        })
+        .catch((error) => {
+          let status = error.response.status;
+          if (status === 408)
+            // timout
+            this.onModalMessageErrorChange();
+          else throw error;
+        })
     );
   };
 
@@ -121,6 +131,10 @@ class Items extends Component {
     this.setState({ modalShow: !this.state.modalShow });
   };
 
+  onModalMessageErrorChange = () => {
+    this.setState({ modalMessageError: !this.state.modalMessageError });
+  };
+
   profileItemsLen = () => Object.keys(this.state.profileItems).length;
 
   render() {
@@ -142,12 +156,12 @@ class Items extends Component {
           {this.state.items.map((item, index) => {
             return (
               <Col md={4} key={index} className="mb-3">
-                  <CardItem
-                    item={item}
-                    index={index}
-                    onRate={this.onRate}
-                    value={this.state.value}
-                  />
+                <CardItem
+                  item={item}
+                  index={index}
+                  onRate={this.onRate}
+                  value={this.state.value}
+                />
               </Col>
             );
           })}
@@ -169,6 +183,12 @@ class Items extends Component {
           onHide={this.onModalChange}
           items={this.state.profileItems}
           onDelete={this.onDelete}
+        />
+        <ModalMessage
+          show={this.state.modalMessageError}
+          onHide={this.onModalMessageErrorChange}
+          title="Error!"
+          text="Please, try again or try to change or remove some movies from your list!"
         />
       </Container>
     );
