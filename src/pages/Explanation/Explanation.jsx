@@ -3,9 +3,6 @@ import React, { Component } from "react";
 // Bootstrap imports
 import { Button, Col, Container, Form, Image, Row } from "react-bootstrap";
 
-// React Bootstrap Range Slider imports
-import RangeSlider from "react-bootstrap-range-slider";
-
 // Redux import
 import { connect } from "react-redux";
 

@@ -30,6 +30,7 @@ class Recommendation extends Component {
       useful: 3,
       preferences: 3,
       levelFit: 3,
+      levelUseful: 3,
     };
 
     this.changeExplanation();
@@ -86,6 +87,9 @@ class Recommendation extends Component {
   handleChangeLevelFit = (event) =>
     this.setState({ levelFit: event.target.value });
 
+  handleChangeLevelUseful = (event) =>
+    this.setState({ levelUseful: event.target.value });
+
   handleSubmit = (event) => {
     event.preventDefault();
 
@@ -99,6 +103,7 @@ class Recommendation extends Component {
         useful: this.state.useful,
         preferences: this.state.preferences,
         levelFit: this.state.levelFit,
+        levelUseful: this.state.levelUseful,
       },
     };
 
@@ -185,6 +190,14 @@ class Recommendation extends Component {
             interests:"
             value={this.state.levelFit}
             onChange={this.handleChangeLevelFit}
+            labels={this.labels}
+            ticks={this.ticks}
+          />
+          <Option
+            controlId="levelUseful"
+            label="Changing the explanation levels was useful for my choice:"
+            value={this.state.levelUseful}
+            onChange={this.handleChangeLevelUseful}
             labels={this.labels}
             ticks={this.ticks}
           />
