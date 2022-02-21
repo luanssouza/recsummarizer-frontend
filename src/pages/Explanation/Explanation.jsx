@@ -15,6 +15,7 @@ import {
 
 // Components
 import Option from "../../components/Option/Option";
+import CommentTextArea from "../../components/Comments/Comments";
 
 class Explanation extends Component {
   constructor(props) {
@@ -26,9 +27,13 @@ class Explanation extends Component {
       item: rec,
       details: 20,
       understood: 3,
-      useful: 3,
+      commentUnderstood: "",
       interest: 3,
+      commentInterest: "",
+      useful: 3,
+      commentUseful: "",
       preferences: 3,
+      commentPreferences: "",
     };
 
     this.getExplanations();
@@ -86,19 +91,28 @@ class Explanation extends Component {
     );
   };
 
-  handleChangeDetails = (event) =>
-    this.setState({ details: event.target.value });
-
   handleChangeUnderstood = (event) =>
     this.setState({ understood: event.target.value });
 
-  handleChangeUseful = (event) => this.setState({ useful: event.target.value });
+    handleChangeCommentUnderstood = (event) =>
+    this.setState({ commentUnderstood: event.target.value });
 
   handleChangeInterest = (event) =>
     this.setState({ interest: event.target.value });
 
+  handleChangeCommentInterest = (event) =>
+    this.setState({ commentInterest: event.target.value });
+
+  handleChangeUseful = (event) => this.setState({ useful: event.target.value });
+
+  handleChangeCommentUseful = (event) =>
+    this.setState({ commentUseful: event.target.value });
+
   handleChangePreferences = (event) =>
     this.setState({ preferences: event.target.value });
+
+  handleChangeCommentPreferences = (event) =>
+    this.setState({ commentPreferences: event.target.value });
 
   handleSubmit = (event) => {
     event.preventDefault();
@@ -108,9 +122,13 @@ class Explanation extends Component {
         user_id: this.props.user.user.user_id,
         movie_id: this.state.item.movie_id,
         understood: this.state.understood,
-        useful: this.state.useful,
+        commentUnderstood: this.state.commentUnderstood,
         interest: this.state.interest,
+        commentInterest: this.state.commentInterest,
+        useful: this.state.useful,
+        commentUseful: this.state.commentUseful,
         preferences: this.state.preferences,
+        commentPreferences: this.state.commentPreferences,
       },
     };
 
@@ -150,12 +168,19 @@ class Explanation extends Component {
             Inform which explanation better fits with the definitions:
           </h3>
           <Option
-            controlId="liked"
-            label="I understood why this movie was recommended to me:"
+            controlId="understood"
+            label="I understood why this recommendation was made to me:"
             value={this.state.understood}
             onChange={this.handleChangeUnderstood}
             labels={this.labels}
             ticks={this.ticks}
+          />
+          <CommentTextArea
+            text="Comments or Suggestions:"
+            comment={this.state.commentUnderstood}
+            onChange={this.handleChangeCommentUnderstood}
+            rows={1}
+            maxlength={255}
           />
           <Option
             controlId="useful"
@@ -165,6 +190,13 @@ class Explanation extends Component {
             labels={this.labels}
             ticks={this.ticks}
           />
+          <CommentTextArea
+            text="Comments or Suggestions:"
+            comment={this.state.commentUseful}
+            onChange={this.handleChangeCommentUseful}
+            rows={1}
+            maxlength={255}
+          />
           <Option
             controlId="interest"
             label="The explanation increased my interest on this recommendation:"
@@ -173,6 +205,13 @@ class Explanation extends Component {
             labels={this.labels}
             ticks={this.ticks}
           />
+          <CommentTextArea
+            text="Comments or Suggestions:"
+            comment={this.state.commentInterest}
+            onChange={this.handleChangeCommentInterest}
+            rows={1}
+            maxlength={255}
+          />
           <Option
             controlId="preferences"
             label="The explanation fits with my preferences:"
@@ -180,6 +219,13 @@ class Explanation extends Component {
             onChange={this.handleChangePreferences}
             labels={this.labels}
             ticks={this.ticks}
+          />
+          <CommentTextArea
+            text="Comments or Suggestions:"
+            comment={this.state.commentPreferences}
+            onChange={this.handleChangeCommentPreferences}
+            rows={1}
+            maxlength={255}
           />
           <Button variant="primary" type="submit" className="float-right">
             Next

@@ -14,6 +14,7 @@ import { getExplanation, postEvaluation } from "../../services/recommender";
 
 // Components
 import Option from "../../components/Option/Option";
+import CommentTextArea from "../../components/Comments/Comments";
 
 class Recommendation extends Component {
   constructor(props) {
@@ -25,12 +26,19 @@ class Recommendation extends Component {
       item: rec,
       details: 10,
       liked: 3,
+      commentLiked: "",
       understood: 3,
+      commentUnderstood: "",
       interest: 3,
+      commentInterest: "",
       useful: 3,
+      commentUseful: "",
       preferences: 3,
+      commentPreferences: "",
       levelFit: 3,
+      commentLevelFit: "",
       levelUseful: 3,
+      commentLevelUseful: "",
     };
 
     this.changeExplanation();
@@ -73,22 +81,43 @@ class Recommendation extends Component {
 
   handleChangeLiked = (event) => this.setState({ liked: event.target.value });
 
+  handleChangeCommentLiked = (event) =>
+    this.setState({ commentLiked: event.target.value });
+
   handleChangeUnderstood = (event) =>
     this.setState({ understood: event.target.value });
+
+  handleChangeCommentUnderstood = (event) =>
+    this.setState({ commentUnderstood: event.target.value });
 
   handleChangeInterest = (event) =>
     this.setState({ interest: event.target.value });
 
+  handleChangeCommentInterest = (event) =>
+    this.setState({ commentInterest: event.target.value });
+
   handleChangeUseful = (event) => this.setState({ useful: event.target.value });
+
+  handleChangeCommentUseful = (event) =>
+    this.setState({ commentUseful: event.target.value });
 
   handleChangePreferences = (event) =>
     this.setState({ preferences: event.target.value });
 
+  handleChangeCommentPreferences = (event) =>
+    this.setState({ commentPreferences: event.target.value });
+
   handleChangeLevelFit = (event) =>
     this.setState({ levelFit: event.target.value });
 
+  handleChangeCommentLevelFit = (event) =>
+    this.setState({ commentLevelFit: event.target.value });
+
   handleChangeLevelUseful = (event) =>
     this.setState({ levelUseful: event.target.value });
+
+  handleChangeCommentLevelUseful = (event) =>
+    this.setState({ commentLevelUseful: event.target.value });
 
   handleSubmit = (event) => {
     event.preventDefault();
@@ -98,12 +127,19 @@ class Recommendation extends Component {
         user_id: this.props.user.user.user_id,
         movie_id: this.state.item.movie_id,
         liked: this.state.liked,
+        commentLiked: this.state.commentLiked,
         understood: this.state.understood,
+        commentUnderstood: this.state.commentUnderstood,
         interest: this.state.interest,
+        commentInterest: this.state.commentInterest,
         useful: this.state.useful,
+        commentUseful: this.state.commentUseful,
         preferences: this.state.preferences,
+        commentPreferences: this.state.commentPreferences,
         levelFit: this.state.levelFit,
+        commentLevelFit: this.state.commentLevelFit,
         levelUseful: this.state.levelUseful,
+        commentLevelUseful: this.state.commentLevelUseful,
       },
     };
 
@@ -152,6 +188,13 @@ class Recommendation extends Component {
             labels={this.labels}
             ticks={this.ticks}
           />
+          <CommentTextArea
+            text="Comments or Suggestions:"
+            comment={this.state.commentLiked}
+            onChange={this.handleChangeCommentLiked}
+            rows={1}
+            maxlength={255}
+          />
           <Option
             controlId="understood"
             label="I understood why this recommendation was made to me:"
@@ -159,6 +202,13 @@ class Recommendation extends Component {
             onChange={this.handleChangeUnderstood}
             labels={this.labels}
             ticks={this.ticks}
+          />
+          <CommentTextArea
+            text="Comments or Suggestions:"
+            comment={this.state.commentUnderstood}
+            onChange={this.handleChangeCommentUnderstood}
+            rows={1}
+            maxlength={255}
           />
           <Option
             controlId="useful"
@@ -168,6 +218,13 @@ class Recommendation extends Component {
             labels={this.labels}
             ticks={this.ticks}
           />
+          <CommentTextArea
+            text="Comments or Suggestions:"
+            comment={this.state.commentUseful}
+            onChange={this.handleChangeCommentUseful}
+            rows={1}
+            maxlength={255}
+          />
           <Option
             controlId="interest"
             label="The explanation increased my interest on this recommendation:"
@@ -176,6 +233,13 @@ class Recommendation extends Component {
             labels={this.labels}
             ticks={this.ticks}
           />
+          <CommentTextArea
+            text="Comments or Suggestions:"
+            comment={this.state.commentInterest}
+            onChange={this.handleChangeCommentInterest}
+            rows={1}
+            maxlength={255}
+          />
           <Option
             controlId="preferences"
             label="The explanation fits with my preferences:"
@@ -183,6 +247,13 @@ class Recommendation extends Component {
             onChange={this.handleChangePreferences}
             labels={this.labels}
             ticks={this.ticks}
+          />
+          <CommentTextArea
+            text="Comments or Suggestions:"
+            comment={this.state.commentPreferences}
+            onChange={this.handleChangeCommentPreferences}
+            rows={1}
+            maxlength={255}
           />
           <Option
             controlId="levelFit"
@@ -193,6 +264,13 @@ class Recommendation extends Component {
             labels={this.labels}
             ticks={this.ticks}
           />
+          <CommentTextArea
+            text="Comments or Suggestions:"
+            comment={this.state.commentLevelFit}
+            onChange={this.handleChangeCommentLevelFit}
+            rows={1}
+            maxlength={255}
+          />
           <Option
             controlId="levelUseful"
             label="Changing the explanation levels was useful for my choice:"
@@ -200,6 +278,13 @@ class Recommendation extends Component {
             onChange={this.handleChangeLevelUseful}
             labels={this.labels}
             ticks={this.ticks}
+          />
+          <CommentTextArea
+            text="Comments or Suggestions:"
+            comment={this.state.commentLevelUseful}
+            onChange={this.handleChangeCommentLevelUseful}
+            rows={1}
+            maxlength={255}
           />
           <Button variant="primary" type="submit" className="float-right">
             Next

@@ -5,6 +5,7 @@ import { Button, Col, Container, Form, Row } from "react-bootstrap";
 
 // Redux import
 import { connect } from "react-redux";
+import CommentTextArea from "../../components/Comments/Comments";
 
 // Components
 import Option from "../../components/Option/Option";
@@ -19,6 +20,7 @@ class ItemTries extends Component {
     this.state = {
       item: rec,
       liked: 3,
+      commentLiked: "",
     };
   }
 
@@ -38,6 +40,9 @@ class ItemTries extends Component {
 
   handleChangeLiked = (event) => this.setState({ liked: event.target.value });
 
+  handleChangeCommentLiked = (event) =>
+    this.setState({ commentLiked: event.target.value });
+
   handleSubmit = (event) => {
     event.preventDefault();
 
@@ -46,6 +51,7 @@ class ItemTries extends Component {
         user_id: this.props.user.user.user_id,
         movie_id: this.state.item.movie_id,
         liked: this.state.liked,
+        commentLiked: this.state.commentLiked,
       },
     };
 
@@ -88,6 +94,13 @@ class ItemTries extends Component {
             onChange={this.handleChangeLiked}
             labels={this.labels}
             ticks={this.ticks}
+          />
+          <CommentTextArea
+            text="Comments or Suggestions:"
+            comment={this.state.commentLiked}
+            onChange={this.handleChangeCommentLiked}
+            rows={1}
+            maxlength={255}
           />
           <Button variant="primary" type="submit" className="float-right">
             Next
