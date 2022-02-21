@@ -27,7 +27,7 @@ class Explanation extends Component {
 
     this.state = {
       item: rec,
-      details: 10,
+      details: 20,
       understood: 3,
       useful: 3,
       interest: 3,
@@ -147,22 +147,10 @@ class Explanation extends Component {
             {this.state.item.explanationB}
           </Col>
         </Row>
-
+        <hr />
         <Form onSubmit={this.handleSubmit}>
-          <hr />
-          <Form.Group controlId="details">
-            <Form.Label>Level of Details:</Form.Label>
-            <RangeSlider
-              value={this.state.details}
-              onChange={this.handleChangeDetails}
-              onAfterChange={this.changeExplanation}
-              min={1}
-              max={20}
-            />
-          </Form.Group>
-          <hr />
           <h3>
-            Questionnaire (before answer, try different levels of detail):
+            Inform which explanation better fits with the definitions:
           </h3>
           <Option
             controlId="liked"
