@@ -167,7 +167,7 @@ class Recommendation extends Component {
         <Form onSubmit={this.handleSubmit}>
           <hr />
           <h3>
-            Questionnaire (before answer, try different levels of detail):
+            Questionnaire (before answering the questions, please choose a level of details of the explanation which you prefer most):
           </h3>
           <Form.Group controlId="details">
             <Form.Label>Level of details of the explanation:</Form.Label>

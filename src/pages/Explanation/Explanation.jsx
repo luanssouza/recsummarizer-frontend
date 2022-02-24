@@ -165,7 +165,7 @@ class Explanation extends Component {
         <hr />
         <Form onSubmit={this.handleSubmit}>
           <h3>
-            Inform which explanation better fits with the definitions:
+            Please, inform which explanation better fits with the following definitions:
           </h3>
           <Option
             controlId="understood"

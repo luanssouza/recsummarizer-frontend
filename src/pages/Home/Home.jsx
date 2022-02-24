@@ -37,6 +37,8 @@ class Home extends Component {
           Diferentes Níveis de Detalhamento Usando Revisões de Usuários”.
         </p>
 
+        <p>O experimento será conduzido em inglês, pois os dados utilizados para geração das explicações estão nesta língua. Sendo assim, o conhecimento básico do idioma é recomendado para a participação. Além disso, o uso de ferramentas de tradução automática deve ser evitado para que informações não se percam no processo de tradução.</p>
+
         <h2>Justificativa e Objetivos</h2>
         <p>
           A presente pesquisa visa estudar como as explicações podem contribuir

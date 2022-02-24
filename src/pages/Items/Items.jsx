@@ -37,7 +37,7 @@ class Items extends Component {
     this.onInit();
   }
 
-  onInit = () => {
+  getItemsList = () => {
     this.props.loader(
       getItems().then((response) => {
         let items = Array.isArray(response.data) ? response.data : [];
@@ -45,6 +45,8 @@ class Items extends Component {
       })
     );
   };
+
+  onInit = () => this.getItemsList();
 
   componentDidMount() {
     window.scrollTo(0, 0);
@@ -140,8 +142,9 @@ class Items extends Component {
   render() {
     return (
       <Container>
-        <h4 className="d-flex justify-content-center">
-          Rate at least 10 movies.
+        <h4 className="d-flex justify-content-center text-center">
+          We need to know your preferences to generate a recommendation.
+          Please, rate at least 10 movies.
         </h4>
         <Row>
           <SearchBar onSearch={this.onSearch} />
@@ -177,6 +180,11 @@ class Items extends Component {
           title={`items ${this.profileItemsLen()}/10`}
           num={2}
           disabled={this.profileItemsLen() === 0}
+        />
+        <FloatButton
+          buttonFunction={this.getItemsList}
+          title="Get More Items"
+          num={3}
         />
         <ModalItems
           show={this.state.modalShow}
