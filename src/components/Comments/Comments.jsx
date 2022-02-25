@@ -11,7 +11,7 @@ function CommentTextArea(props) {
         value={props.comment}
         as="textarea"
         rows={props.rows}
-        maxlength={props.maxlength}
+        maxLength={props.maxLength}
         onChange={props.onChange}
       />
     </Form.Group>

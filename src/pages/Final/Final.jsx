@@ -73,7 +73,7 @@ class Final extends Component {
               value={this.state.comment}
               as="textarea"
               rows={3}
-              maxlength="255"
+              maxLength="255"
               onChange={this.handleChangeComment}
             />
           </Form.Group>

@@ -70,9 +70,9 @@ class ItemTries extends Component {
         <h2 className="text-center">{this.state.item.title}</h2>
         <Row className="justify-content-md-center">
           <Col className="text-center" md={6}>
-            <div class="embed-responsive embed-responsive-16by9">
+            <div className="embed-responsive embed-responsive-16by9">
               <iframe
-                class="embed-responsive-item"
+                className="embed-responsive-item"
                 src={
                   "https://www.youtube.com/embed/" + this.state.item.youtubeId
                 }
@@ -100,7 +100,7 @@ class ItemTries extends Component {
             comment={this.state.commentLiked}
             onChange={this.handleChangeCommentLiked}
             rows={1}
-            maxlength={255}
+            maxLength={255}
           />
           <Button variant="primary" type="submit" className="float-right">
             Next
