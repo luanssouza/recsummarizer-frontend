@@ -15,6 +15,7 @@ import { getExplanation, postEvaluation } from "../../services/recommender";
 // Components
 import Option from "../../components/Option/Option";
 import CommentTextArea from "../../components/Comments/Comments";
+import { ADD_EXPLANATION } from "../../store/actions/actionsConst";
 
 class Recommendation extends Component {
   constructor(props) {
@@ -25,6 +26,7 @@ class Recommendation extends Component {
     this.state = {
       item: rec,
       details: 10,
+      explanationChange: [],
       liked: 3,
       commentLiked: "",
       understood: 3,
@@ -70,7 +72,10 @@ class Recommendation extends Component {
         let rec = this.state.item;
         rec.explanation = response.data.explanation;
 
-        this.setState({ item: rec });
+        let explanationChange = this.state.explanationChange;
+        explanationChange.push(this.state.details);
+
+        this.setState({ item: rec, explanationChange: explanationChange });
       })
     );
   };
@@ -126,6 +131,8 @@ class Recommendation extends Component {
       evaluation: {
         user_id: this.props.user.user.user_id,
         movie_id: this.state.item.movie_id,
+        n_clusters: this.state.details,
+        explanationChange: this.state.explanationChange,
         liked: this.state.liked,
         commentLiked: this.state.commentLiked,
         understood: this.state.understood,
@@ -145,6 +152,7 @@ class Recommendation extends Component {
 
     this.props.loader(
       postEvaluation(requestBody).then(() => {
+        this.props.onSubmitExplanation({ details: this.state.details });
         this.props.history.push("/itemTries");
       })
     );
@@ -167,7 +175,8 @@ class Recommendation extends Component {
         <Form onSubmit={this.handleSubmit}>
           <hr />
           <h3>
-            Questionnaire (before answering the questions, please choose a level of details of the explanation which you prefer most):
+            Questionnaire (before answering the questions, please choose a level
+            of details of the explanation which you prefer most):
           </h3>
           <Form.Group controlId="details">
             <Form.Label>Level of details of the explanation:</Form.Label>
@@ -193,7 +202,7 @@ class Recommendation extends Component {
             comment={this.state.commentLiked}
             onChange={this.handleChangeCommentLiked}
             rows={1}
-            maxlength={255}
+            maxLength={255}
           />
           <Option
             controlId="understood"
@@ -208,7 +217,7 @@ class Recommendation extends Component {
             comment={this.state.commentUnderstood}
             onChange={this.handleChangeCommentUnderstood}
             rows={1}
-            maxlength={255}
+            maxLength={255}
           />
           <Option
             controlId="useful"
@@ -223,7 +232,7 @@ class Recommendation extends Component {
             comment={this.state.commentUseful}
             onChange={this.handleChangeCommentUseful}
             rows={1}
-            maxlength={255}
+            maxLength={255}
           />
           <Option
             controlId="interest"
@@ -238,7 +247,7 @@ class Recommendation extends Component {
             comment={this.state.commentInterest}
             onChange={this.handleChangeCommentInterest}
             rows={1}
-            maxlength={255}
+            maxLength={255}
           />
           <Option
             controlId="preferences"
@@ -253,7 +262,7 @@ class Recommendation extends Component {
             comment={this.state.commentPreferences}
             onChange={this.handleChangeCommentPreferences}
             rows={1}
-            maxlength={255}
+            maxLength={255}
           />
           <Option
             controlId="levelFit"
@@ -269,7 +278,7 @@ class Recommendation extends Component {
             comment={this.state.commentLevelFit}
             onChange={this.handleChangeCommentLevelFit}
             rows={1}
-            maxlength={255}
+            maxLength={255}
           />
           <Option
             controlId="levelUseful"
@@ -284,7 +293,7 @@ class Recommendation extends Component {
             comment={this.state.commentLevelUseful}
             onChange={this.handleChangeCommentLevelUseful}
             rows={1}
-            maxlength={255}
+            maxLength={255}
           />
           <Button variant="primary" type="submit" className="float-right">
             Next
@@ -301,6 +310,9 @@ const mapStateToProps = (state) => ({
   user: state.user,
 });
 
-const mapDispatchToProps = (dispatch) => ({});
+const mapDispatchToProps = (dispatch) => ({
+  onSubmitExplanation: (value) =>
+    dispatch({ type: ADD_EXPLANATION, payload: value }),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Recommendation);

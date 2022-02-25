@@ -20,12 +20,12 @@ import CommentTextArea from "../../components/Comments/Comments";
 class Explanation extends Component {
   constructor(props) {
     super(props);
-
+    
     let rec = this.props.recommendations.recommendations;
 
     this.state = {
       item: rec,
-      details: 20,
+      details: this.props.explanation.explanation.details,
       understood: 3,
       commentUnderstood: "",
       interest: 3,
@@ -34,6 +34,10 @@ class Explanation extends Component {
       commentUseful: "",
       preferences: 3,
       commentPreferences: "",
+      efficiency: 3,
+      commentEfficiency: "",
+      overload: 3,
+      commentOverload: "",
     };
 
     this.getExplanations();
@@ -94,7 +98,7 @@ class Explanation extends Component {
   handleChangeUnderstood = (event) =>
     this.setState({ understood: event.target.value });
 
-    handleChangeCommentUnderstood = (event) =>
+  handleChangeCommentUnderstood = (event) =>
     this.setState({ commentUnderstood: event.target.value });
 
   handleChangeInterest = (event) =>
@@ -114,6 +118,18 @@ class Explanation extends Component {
   handleChangeCommentPreferences = (event) =>
     this.setState({ commentPreferences: event.target.value });
 
+  handleChangeEfficiency = (event) =>
+    this.setState({ efficiency: event.target.value });
+
+  handleChangeCommentEfficiency = (event) =>
+    this.setState({ commentEfficiency: event.target.value });
+
+  handleChangeOverload = (event) =>
+    this.setState({ overload: event.target.value });
+
+  handleChangeCommentOverload = (event) =>
+    this.setState({ commentOverload: event.target.value });
+
   handleSubmit = (event) => {
     event.preventDefault();
 
@@ -129,6 +145,10 @@ class Explanation extends Component {
         commentUseful: this.state.commentUseful,
         preferences: this.state.preferences,
         commentPreferences: this.state.commentPreferences,
+        efficiency: this.state.efficiency,
+        commentEfficiency: this.state.commentEfficiency,
+        overload: this.state.overload,
+        commentOverload: this.state.commentOverload,
       },
     };
 
@@ -165,7 +185,8 @@ class Explanation extends Component {
         <hr />
         <Form onSubmit={this.handleSubmit}>
           <h3>
-            Please, inform which explanation better fits with the following definitions:
+            Please, inform which explanation better fits with the following
+            definitions:
           </h3>
           <Option
             controlId="understood"
@@ -180,7 +201,7 @@ class Explanation extends Component {
             comment={this.state.commentUnderstood}
             onChange={this.handleChangeCommentUnderstood}
             rows={1}
-            maxlength={255}
+            maxLength={255}
           />
           <Option
             controlId="useful"
@@ -195,7 +216,7 @@ class Explanation extends Component {
             comment={this.state.commentUseful}
             onChange={this.handleChangeCommentUseful}
             rows={1}
-            maxlength={255}
+            maxLength={255}
           />
           <Option
             controlId="interest"
@@ -210,7 +231,7 @@ class Explanation extends Component {
             comment={this.state.commentInterest}
             onChange={this.handleChangeCommentInterest}
             rows={1}
-            maxlength={255}
+            maxLength={255}
           />
           <Option
             controlId="preferences"
@@ -225,7 +246,37 @@ class Explanation extends Component {
             comment={this.state.commentPreferences}
             onChange={this.handleChangeCommentPreferences}
             rows={1}
-            maxlength={255}
+            maxLength={255}
+          />
+          <Option
+            controlId="efficiency"
+            label="The explanation helped me make a faster decision:"
+            value={this.state.efficiency}
+            onChange={this.handleChangeEfficiency}
+            labels={this.labels}
+            ticks={this.ticks}
+          />
+          <CommentTextArea
+            text="Comments or Suggestions:"
+            comment={this.state.commentEfficiency}
+            onChange={this.handleChangeCommentEfficiency}
+            rows={1}
+            maxLength={255}
+          />
+          <Option
+            controlId="overload"
+            label="The explanation have more information than I needed:"
+            value={this.state.overload}
+            onChange={this.handleChangeOverload}
+            labels={this.labels}
+            ticks={this.ticks}
+          />
+          <CommentTextArea
+            text="Comments or Suggestions:"
+            comment={this.state.commentOverload}
+            onChange={this.handleChangeCommentOverload}
+            rows={1}
+            maxLength={255}
           />
           <Button variant="primary" type="submit" className="float-right">
             Next
@@ -240,6 +291,7 @@ const mapStateToProps = (state) => ({
   recommendations: state.recommendations,
   items: state.items,
   user: state.user,
+  explanation: state.explanation,
 });
 
 const mapDispatchToProps = (dispatch) => ({});
