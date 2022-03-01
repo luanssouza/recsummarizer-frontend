@@ -295,7 +295,12 @@ class Recommendation extends Component {
             rows={1}
             maxLength={255}
           />
-          <Button variant="primary" type="submit" className="float-right">
+          <Button
+            variant="primary"
+            type="submit"
+            className="float-right"
+            disabled={!this.state.explanationChange.length}
+          >
             Next
           </Button>
         </Form>
