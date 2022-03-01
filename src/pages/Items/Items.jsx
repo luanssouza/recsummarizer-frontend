@@ -38,12 +38,7 @@ class Items extends Component {
   }
 
   getItemsList = () => {
-    this.props.loader(
-      getItems().then((response) => {
-        let items = Array.isArray(response.data) ? response.data : [];
-        this.setState({ items: items });
-      })
-    );
+    this.props.loader(getItems().then(this.updateItems));
   };
 
   onInit = () => this.getItemsList();
@@ -86,20 +81,7 @@ class Items extends Component {
   };
 
   onSearch = (title, year) => {
-    this.props.loader(
-      getItemsByTitle(title, year).then((response) => {
-        let profileItems = this.state.profileItems;
-        let profileItemsKeys = Object.keys(this.state.profileItems).map(Number);
-        let items = response.data;
-
-        items.forEach((element) => {
-          if (profileItemsKeys.includes(element.movie_id))
-            element.rate = profileItems[element.movie_id].rate;
-          else element.rate = 0;
-        });
-        this.setState({ items: items });
-      })
-    );
+    this.props.loader(getItemsByTitle(title, year).then(this.updateItems));
   };
 
   onRate = (id, rate) => {
@@ -118,13 +100,9 @@ class Items extends Component {
     let profileItems = this.state.profileItems;
     delete profileItems[key];
 
-    let profileItemsKeys = Object.keys(this.state.profileItems).map(Number);
     let items = this.state.items;
-    items.forEach((element) => {
-      if (profileItemsKeys.includes(element.movie_id))
-        element.rate = profileItems[element.movie_id].rate;
-      else element.rate = 0;
-    });
+
+    this.profileItemsRates(items, profileItems);
 
     this.setState({ profileItems: profileItems, items: items });
   };
@@ -137,14 +115,32 @@ class Items extends Component {
     this.setState({ modalMessageError: !this.state.modalMessageError });
   };
 
+  updateItems = (response) => {
+    let profileItems = this.state.profileItems;
+    let items = Array.isArray(response.data) ? response.data : [];
+
+    this.profileItemsRates(items, profileItems);
+
+    this.setState({ items: items });
+  };
+
+  profileItemsRates = (items, profileItems) => {
+    let profileItemsKeys = Object.keys(profileItems).map(Number);
+    items.forEach((element) => {
+      if (profileItemsKeys.includes(element.movie_id))
+        element.rate = profileItems[element.movie_id].rate;
+      else element.rate = 0;
+    });
+  };
+
   profileItemsLen = () => Object.keys(this.state.profileItems).length;
 
   render() {
     return (
       <Container>
         <h4 className="d-flex justify-content-center text-center">
-          We need to know your preferences to generate a recommendation.
-          Please, rate at least 10 movies.
+          We need to know your preferences to generate a recommendation. Please,
+          rate at least 10 movies.
         </h4>
         <Row>
           <SearchBar onSearch={this.onSearch} />
