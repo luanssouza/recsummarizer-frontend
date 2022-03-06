@@ -49,14 +49,16 @@ class Demographic extends Component {
     };
 
     this.props.loader(
-      postUser(requestBody).then((response) => {
-        let user = requestBody.user;
-        user.user_id = response.data.user_id;
-        this.props.onSubmitUser(user);
-        this.props.history.push("/items");
-      }).catch(() => {
-        this.onModalErrorChange();
-      })
+      postUser(requestBody)
+        .then((response) => {
+          let user = requestBody.user;
+          user.user_id = response.data.user_id;
+          this.props.onSubmitUser(user);
+          this.props.history.push("/items");
+        })
+        .catch(() => {
+          this.onModalErrorChange();
+        })
     );
   };
 
@@ -127,8 +129,8 @@ class Demographic extends Component {
           </Form.Group>
           <Form.Group controlId="usedRecSys">
             <Form.Label>
-              Have you ever used another recommender systems? (Such as Amazon
-              and Netflix)
+              Have you ever used other recommender systems? (Such as Amazon and
+              Netflix)
             </Form.Label>
             <Form.Control
               as="select"
